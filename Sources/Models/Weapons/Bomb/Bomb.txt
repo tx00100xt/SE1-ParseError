@@ -1,0 +1,8 @@
+0) BombBack
+1) Attatchment
+2) ProtrusionFront
+3) ProtrusionTop
+4) FuseFront
+5) FuseBack
+6) FuseEnd
+7) BombFace

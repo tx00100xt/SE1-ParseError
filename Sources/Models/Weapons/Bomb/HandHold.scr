@@ -1,0 +1,60 @@
+;******* Creation settings
+TEXTURE_DIM 2.0 2.0
+SIZE 1.0
+MAX_SHADOW 0
+HI_QUALITY YES
+FLAT NO
+HALF_FLAT NO
+STRETCH_DETAIL NO
+
+;******* Mip models
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\
+MIP_MODELS 1
+    HandHold.3DS
+
+ANIM_START
+;******* Start of animation block
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\
+ANIMATION Default
+SPEED 0.1
+HandHold.3DS
+
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\Frames
+ANIMATION Wait
+SPEED 2.5
+10.3ds
+11.3ds
+
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\Frames
+ANIMATION Deactivate
+SPEED 0.2
+03.3ds
+06.3ds
+08.3ds
+10.3ds
+
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\Frames
+ANIMATION Activate
+SPEED 0.2
+10.3ds
+08.3ds
+06.3ds
+03.3ds
+
+
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\Frames
+ANIMATION Throw
+SPEED 0.05
+03.3ds
+06.3ds
+08.3ds
+06.3ds
+03.3ds
+10.3ds
+12.3ds
+14.3ds
+17.3ds
+;******* End of animation block
+ANIM_END
+
+END

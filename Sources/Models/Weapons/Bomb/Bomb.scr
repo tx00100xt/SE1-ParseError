@@ -1,0 +1,26 @@
+;******* Creation settings
+TEXTURE_DIM 2.0 2.0
+SIZE 1.0
+MAX_SHADOW 0
+HI_QUALITY YES
+FLAT NO
+HALF_FLAT NO
+STRETCH_DETAIL NO
+
+;******* Mip models
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\
+MIP_MODELS 1
+    Bomb.3DS
+
+ANIM_START
+;******* Start of animation block
+
+DIRECTORY Mods\ParseErrorFE\Models\Weapons\Bomb\
+ANIMATION Default
+SPEED 0.1
+    Bomb.3DS
+
+;******* End of animation block
+ANIM_END
+
+END

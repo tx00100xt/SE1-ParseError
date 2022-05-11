@@ -1,0 +1,26 @@
+;******* Creation settings
+TEXTURE_DIM 2.0 2.0
+SIZE 0.01
+MAX_SHADOW 0
+HI_QUALITY YES
+FLAT NO
+HALF_FLAT NO
+STRETCH_DETAIL NO
+
+;******* Mip models
+DIRECTORY NewModels\TeleporterGun\Projectile\
+MIP_MODELS 1
+    Projectile.3DS
+
+ANIM_START
+;******* Start of animation block
+
+DIRECTORY NewModels\TeleporterGun\Projectile\
+ANIMATION Default
+SPEED 0.1
+    Projectile.3DS
+
+;******* End of animation block
+ANIM_END
+
+END

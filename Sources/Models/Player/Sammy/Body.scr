@@ -1,0 +1,357 @@
+;******* Creation settings
+TEXTURE_DIM 2.0 2.0
+SIZE 1.0
+MAX_SHADOW 0
+HI_QUALITY YES
+FLAT NO
+HALF_FLAT NO
+STRETCH_DETAIL NO
+
+;******* Mip models
+DIRECTORY NewModels\Sammy\Frames\Body\
+MIP_MODELS 1
+    Body.3ds
+
+ANIM_START
+;******* Start of animation block
+
+DIRECTORY NewModels\Sammy\Frames\Body\
+ANIMATION Default_Animation
+SPEED 0.1
+    Body.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtStand
+ANIMATION Colt_Stand
+SPEED 0.1
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtDraw
+ANIMATION Colt_Redraw
+SPEED 0.12
+    02.lwo
+    01.lwo
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtDraw
+ANIMATION Colt_Draw
+SPEED 0.12
+    02.lwo
+    01.lwo
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtFire
+ANIMATION Colt_FireRight
+SPEED 0.15
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtFire
+ANIMATION Colt_FireLeft
+SPEED 0.15
+    02.lwo
+    03.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\KnifeStand3
+ANIMATION Knife_Attack
+SPEED 0.04
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+    10.lwo
+    11.lwo
+    12.lwo
+    13.lwo
+    14.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtSwim2
+ANIMATION Colt_Swim_Stand
+SPEED 0.1
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtSwim2
+ANIMATION Colt_Swim_ReDraw
+SPEED 0.05
+    06.lwo
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+    01.lwo
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtSwim2
+ANIMATION Colt_Swim_Draw
+SPEED 0.05
+    06.lwo
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+    01.lwo
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtSwim2
+ANIMATION Colt_Swim_FireRight
+SPEED 0.15
+    00.lwo
+    07.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ColtSwim2
+ANIMATION Colt_Swim_FireLeft
+SPEED 0.15
+    00.lwo
+    08.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\KnifeSwim2
+ANIMATION Knife_Swim_Attack
+SPEED 0.04
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+    10.lwo
+    11.lwo
+    12.lwo
+    13.lwo
+    14.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ShotgunStand
+ANIMATION Shotgun_Stand
+SPEED 0.15
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ShotgunStand
+ANIMATION Shotgun_Redraw
+SPEED 0.08
+    06.lwo
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ShotgunStand
+ANIMATION Shotgun_Draw
+SPEED 0.08
+    06.lwo
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ShotgunStand
+ANIMATION Shotgun_FireLong
+SPEED 0.3
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\ShotgunStand
+ANIMATION Shotgun_FireShort
+SPEED 0.15
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Shotgun_Swim_Stand
+SPEED 0.15
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Shotgun_Swim_ReDraw
+SPEED 0.08
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Shotgun_Swim_Draw
+SPEED 0.08
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Shotgun_Swim_FireLong
+SPEED 0.3
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Shotgun_Swim_FireShort
+SPEED 0.15
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunStand
+ANIMATION Minigun_Stand
+SPEED 0.15
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunStand
+ANIMATION Minigun_Redraw
+SPEED 0.08
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunStand
+ANIMATION Minigun_Draw
+SPEED 0.08
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunStand
+ANIMATION Minigun_FireLong
+SPEED 0.12
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunStand
+ANIMATION Minigun_FireShort
+SPEED 0.06
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Minigun_Swim_Stand
+SPEED 0.15
+    00.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Minigun_Swim_ReDraw
+SPEED 0.1
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Minigun_Swim_Draw
+SPEED 0.1
+    05.lwo
+    04.lwo
+    03.lwo
+    02.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Minigun_Swim_FireLong
+SPEED 0.12
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\MinigunSwim2
+ANIMATION Minigun_Swim_FireShort
+SPEED 0.06
+    00.lwo
+    01.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathSwim
+ANIMATION Death_Underwater
+SPEED 0.1
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathSwim
+ANIMATION Death_UnderwaterIdle
+SPEED 0.3
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathForward3
+ANIMATION Death_Back
+SPEED 0.3
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathForward3
+ANIMATION Death_EasyFallBack
+SPEED 0.3
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathForward2
+ANIMATION Death_Forward
+SPEED 0.12
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+    10.lwo
+    11.lwo
+    12.lwo
+    13.lwo
+    14.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathForward3
+ANIMATION Death_EasyFallForward
+SPEED 0.25
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathForward3
+ANIMATION Death_Spikes
+SPEED 0.25
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+
+;******* End of animation block
+ANIM_END
+
+END

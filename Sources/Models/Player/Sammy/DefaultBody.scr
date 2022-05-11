@@ -1,0 +1,60 @@
+;******* Creation settings
+TEXTURE_DIM 2.0 2.0
+SIZE 1.0
+MAX_SHADOW 0
+HI_QUALITY YES
+FLAT NO
+HALF_FLAT NO
+STRETCH_DETAIL NO
+
+;******* Mip models
+DIRECTORY NewModels\Sammy\
+MIP_MODELS 1
+    Default.3ds
+
+ANIM_START
+;******* Start of animation block
+
+DIRECTORY NewModels\Sammy\Frames
+ANIMATION Default_Animation
+SPEED 0.1
+    DefaultBody.lwo
+
+DIRECTORY NewModels\Sammy\Frames\Body\DeathBack1
+ANIMATION Death_Back
+SPEED 0.06
+    00.lwo
+    01.lwo
+    02.lwo
+    03.lwo
+    04.lwo
+    05.lwo
+    06.lwo
+    07.lwo
+    08.lwo
+    09.lwo
+    10.lwo
+    11.lwo
+    12.lwo
+    13.lwo
+    14.lwo
+    15.lwo
+    16.lwo
+    17.lwo
+    18.lwo
+    19.lwo
+    20.lwo
+    21.lwo
+    22.lwo
+    23.lwo
+    24.lwo
+    25.lwo
+    26.lwo
+    27.lwo
+    28.lwo
+    29.lwo
+
+;******* End of animation block
+ANIM_END
+
+END

@@ -15,15 +15,15 @@ Download [SamTFE-ParseError.tar.xz] archive and unpack to  SeriousSamClassic/Sam
 Download [SamTSE-ParseError.tar.xz] archive and unpack to  SeriousSamClassic/SamTSE/ directory.
 To start the modification, use the game menu - item Modification.
 
-#### Building Serious Sam Hero Number One modification (only for SS:TSE)
+#### Building Serious Sam Classic Parse Error modification (for SS:TFE and for SS:TSE)
 
 Type this in your terminal:
 
 ```
 git clone https://github.com/tx00100xt/SE1-ParseError.git
 cd SE1-ParseError/Sources
-./build-linux64.sh      	    # use build-linux32.sh for 32-bits
-./build-linux64xplus.sh      	# use build-linux32xplus.sh for 32-bits
+./build-linux64.sh              # use build-linux32.sh for 32-bits
+./build-linux64xplus.sh         # use build-linux32xplus.sh for 32-bits
 ```
 After that , libraries will be collected in the x32 or x64 directory . 
 Copy them to SeriousSamClassic/SamTFE/Mods/PEFE2/Bin, SeriousSamClassic/SamTFE/Mods/PEFE2HD/Bin,
@@ -35,5 +35,5 @@ License
 * Serious Engine v1.10 is licensed under the GNU GPL v2 (see LICENSE file).
 
 
-[SamTFE-ParseError.tar.xz]: https://drive.google.com/file/d/1Cxmzm8dk1WzaYS7vfzvzeILS8O78SC92/view?usp=sharing "Serious Sam Classic PEFE Mod"
-[SamTSE-ParseError.tar.xz]: https://drive.google.com/file/d/1Cxmzm8dk1WzaYS7vfzvzeILS8O78SC92/view?usp=sharing "Serious Sam Classic PESE Mod"
+[SamTFE-ParseError.tar.xz]: https://drive.google.com/file/d/1oZG0kJYdlJQePfo5UN8_V6--JG0Ui0Kv/view?usp=sharing "Serious Sam Classic PEFE Mod"
+[SamTSE-ParseError.tar.xz]: https://drive.google.com/file/d/1W4ykVtZY_8iUl1diZSgoB3oGZ48gbnIm/view?usp=sharing "Serious Sam Classic PESE Mod"

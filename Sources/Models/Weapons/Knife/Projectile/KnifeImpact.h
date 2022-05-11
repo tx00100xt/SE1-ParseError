@@ -1,0 +1,13 @@
+// Animation names
+#define KNIFEIMPACT_ANIM_DEFAULT 0
+
+// Color names
+
+// Patch names
+
+// Names of collision boxes
+#define KNIFEIMPACT_COLLISION_BOX_PART_NAME 0
+
+// Attaching position names
+
+// Sound names
