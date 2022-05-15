@@ -2,15 +2,13 @@
 
 What is Parse Error?  
 This is a modification for Serious Sam Classic The First Encounter and Serious Sam Classic The Second Encounter. 
-This mod required https://github.com/tx00100xt/SeriousSamClassic to run.
+This mod required https://github.com/tx00100xt/SeriousSamClassic to run.  
 Parse Error was created by fans of the game Serious Sam Classic and is distributed for free.    
 
 Description:  
 Parse Error is a game Modification for Serious Sam Classic.  
-Ton's of new game options allow you to create almost any  
-type of Game Mode your little heart desires. New features include a Dual  
-Mini, Da Bomb and an alternate fire on several of the weapons. Crank up the  
-Enemy Max as high as you can and let the InSamnity begin!!!    
+Ton's of new game options allow you to create almost any type of Game Mode your little heart desires. New features include a Dual 
+Mini, Da Bomb and an alternate fire on several of the weapons. Crank up the Enemy Max as high as you can and let the InSamnity begin!!!    
 
 Author:  
 DwK (Dance with Kleer) is author this mod for windows.
