@@ -36,6 +36,12 @@ After that , libraries will be collected in the x32 or x64 directory .
 Copy them to SeriousSamClassic/SamTFE/Mods/PEFE2/Bin, SeriousSamClassic/SamTFE/Mods/PEFE2HD/Bin,
 SeriousSamClassic/SamTSE/Mods/PESE2/Bin, SeriousSamClassic/SamTSE/Mods/PESE2HD/Bin folder.
 
+### Suported OS
+linux
+
+### Other OS
+Not supported
+
 License
 -------
 
