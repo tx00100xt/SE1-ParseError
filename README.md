@@ -1,8 +1,8 @@
 ## Serious Sam Classic Parse Error
 
 What is Parse Error?  
-This is a modification for Serious Sam Classic The First Encounter and Serious Sam Classic The Second Encounter. 
-This mod required https://github.com/tx00100xt/SeriousSamClassic to run.  
+This is a modification for Serious Sam Classic The First Encounter and Serious Sam Classic The Second Encounter.  
+This mod required https://github.com/tx00100xt/SeriousSamClassic or https://github.com/tx00100xt/SeriousSamClassic-VK to run.  
 Parse Error was created by fans of the game Serious Sam Classic and is distributed for free.    
 
 Description:  
