@@ -4380,7 +4380,7 @@ procedures:
         FLOAT fDistance = DistanceTo(this, m_penTarget);
         FLOAT fSpeedAdjusted = m_fGuidedMaxSpeedFactor;
 
-				if (abs(aWantedHeading)>45) {
+				if ((SLONG)abs((int)aWantedHeading)>(SLONG)45) {
           // slow down so we can turn
           fSpeedAdjusted = fSpeedAdjusted*((fDistance*0.035f)+0.3f);
         }

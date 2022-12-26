@@ -24,7 +24,7 @@ enum MamutChar {
 #define CLOSE_ATTACK_RANGE 10.0f
 #define DEMON_STRETCH 2.5f
 FLOAT3D vAirWavelLaunchPos = (FLOAT3D(0.06f, 1.5f, -3.45f)*DEMON_STRETCH);
-static _tmLastStandingAnim =0.0f;  
+static FLOAT _tmLastStandingAnim =0.0f;  
 
 // info structure
 static EntityInfo eiMamut = {

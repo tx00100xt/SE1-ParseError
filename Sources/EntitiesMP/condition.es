@@ -266,8 +266,8 @@ functions:
 					if(bf1&&bf2){
 						FLOAT rAbs1=fValue;
 						FLOAT rAbs2=fValue2;
-						if(m_bAbs1){rAbs1=abs(rAbs1);}
-						if(m_bAbs2){rAbs2=abs(rAbs2);}
+						if(m_bAbs1){rAbs1=abs((int)rAbs1);}
+						if(m_bAbs2){rAbs2=abs((int)rAbs2);}
 						if(m_eCondition==EC_SAME){
 							if(rAbs1==rAbs2){
 								bResult=TRUE;

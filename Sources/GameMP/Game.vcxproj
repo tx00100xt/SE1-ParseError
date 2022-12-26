@@ -101,12 +101,12 @@
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)..\Tools.Win32\Libraries\DX8SDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\Lib\x32\;$(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\Lib\x32\;$(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)..\Tools.Win32\Libraries\DX8SDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\Lib\x64\;$(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\Lib\x64\;$(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin;$(LibraryPath)</LibraryPath>
     <OutDir>Release\</OutDir>
     <IntDir>Release\</IntDir>
   </PropertyGroup>
@@ -169,16 +169,16 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\Release\GameMP.dll</OutputFile>
-      <ImportLibrary>.\Release\GameMP.lib</ImportLibrary>
-      <AdditionalDependencies>user32.lib;Engine.lib;EntitiesMP.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release\Game.dll</OutputFile>
+      <ImportLibrary>.\Release\Game.lib</ImportLibrary>
+      <AdditionalDependencies>user32.lib;Engine.lib;Entities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy Release\$(TargetName).dll $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy Release\$(TargetName).map $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy Release\$(TargetName).lib $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;nul</Command>
+      <Command>copy Release\$(TargetName).dll $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ &gt;nul
+copy Release\$(TargetName).map $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ &gt;nul
+copy Release\$(TargetName).lib $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ &gt;nul</Command>
       <Message>Copying %(Filename) binaries to $(ENGINE_DIR)\Bin</Message>
-      <Outputs>$(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\\$(InputName).dll;%(Outputs)</Outputs>
+      <Outputs>$(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\\$(InputName).dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -223,16 +223,16 @@ copy Release\$(TargetName).lib $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;n
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\Release\GameMP.dll</OutputFile>
-      <ImportLibrary>.\Release\GameMP.lib</ImportLibrary>
-      <AdditionalDependencies>user32.lib;Engine.lib;EntitiesMP.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release\Game.dll</OutputFile>
+      <ImportLibrary>.\Release\Game.lib</ImportLibrary>
+      <AdditionalDependencies>user32.lib;Engine.lib;Entities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy .\Release\$(TargetName).dll $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy Release\$(TargetName).map $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy .\Release\$(TargetName).lib $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ &gt;nul</Command>
+      <Command>copy .\Release\$(TargetName).dll $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ &gt;nul
+copy Release\$(TargetName).map $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ &gt;nul
+copy .\Release\$(TargetName).lib $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ &gt;nul</Command>
       <Message>Copying %(Filename) binaries to $(ENGINE_DIR)\Bin</Message>
-      <Outputs>$(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\$(InputName).dll;%(Outputs)</Outputs>
+      <Outputs>$(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\$(InputName).dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -41,14 +41,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 extern "C" __attribute__ ((visibility("default"))) FLOAT _fArmorHeightAdjuster = 1.0f;
 extern "C" __attribute__ ((visibility("default"))) FLOAT _fFragScorerHeightAdjuster = 1.0f;
 #else
-DECL_DLL extern FLOAT _fArmorHeightAdjuster = 1.5f;
-DECL_DLL extern FLOAT _fFragScorerHeightAdjuster = 1.5f;
+extern __declspec(dllimport) FLOAT _fArmorHeightAdjuster;
+extern __declspec(dllimport) FLOAT _fFragScorerHeightAdjuster;
 #endif
 
 //
 extern INDEX hud_bShowPing;
 extern INDEX hud_bShowKills;
-
+extern INDEX hud_bShowScore;
 extern INDEX gam_bUZActive;
 extern INDEX gam_iUZLives;
 
@@ -1468,7 +1468,7 @@ extern void DrawHUD( const CPlayer *penPlayerCurrent, CDrawPort *pdpCurrent, BOO
     FLOAT fCharHeight = (_pfdDisplayFont->GetHeight()-2)*fTextScale * 0.9;
     // generate and sort by mana list of active players
     BOOL bMaxScore=TRUE, bMaxMana=TRUE, bMaxFrags=TRUE, bMaxDeaths=TRUE;
-    hud_iSortPlayers = Clamp( hud_iSortPlayers, -1, 6);
+    hud_iSortPlayers = Clamp( hud_iSortPlayers, (INDEX)-1, (INDEX)6);
     SortKeys eKey = (SortKeys)hud_iSortPlayers;
     if (hud_iSortPlayers==-1) {
 //      eKey = PSK_FRAGS;
@@ -1488,8 +1488,8 @@ extern void DrawHUD( const CPlayer *penPlayerCurrent, CDrawPort *pdpCurrent, BOO
       const INDEX iMana   = penPlayer->m_iMana;
       const INDEX iFrags  = penPlayer->m_psGameStats.ps_iKills;
       const INDEX iDeaths = penPlayer->m_psGameStats.ps_iDeaths;
-      const INDEX iHealth = ClampDn( (INDEX)ceil( penPlayer->GetHealth()), 0);
-      const INDEX iArmor  = ClampDn( (INDEX)ceil( penPlayer->m_fArmor),    0);
+      const INDEX iHealth = ClampDn( (INDEX)ceil( penPlayer->GetHealth()), (INDEX)0);
+      const INDEX iArmor  = ClampDn( (INDEX)ceil( penPlayer->m_fArmor), (INDEX)0);
       CTString strScore, strMana, strFrags, strDeaths, strHealth, strArmor, strPing, strKillsC, strKillsT;
       strScore.PrintF(  "%d", iScore);
       strMana.PrintF(   "%d", iMana);

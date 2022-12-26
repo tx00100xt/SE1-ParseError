@@ -236,7 +236,7 @@ void CGame::ConsoleRender(CDrawPort *pdp)
 	//dpConsole.SetTextCharSpacing(1.0f);
 	//dpConsole.SetTextScaling(1.0f);
 	//dpConsole.SetTextAspect(1.0f);
-  con_iFirstLine = ClampDn( con_iFirstLine, 1);
+  con_iFirstLine = ClampDn( con_iFirstLine, (INDEX)1);
   pixYLine -= (PIX)(pixLineSpacing * 1.333f);
   ctConsoleLinesOnScreen = pixYLine/pixLineSpacing;
   while( pixYLine >= 0) {
@@ -661,7 +661,7 @@ static void Key_PgDn( BOOL bShift)
 {
   if( bShift) con_iFirstLine -= ctConsoleLinesOnScreen;
   else con_iFirstLine--;
-  con_iFirstLine = ClampDn( con_iFirstLine, 1);
+  con_iFirstLine = ClampDn( con_iFirstLine, (INDEX)1);
 }
 
 

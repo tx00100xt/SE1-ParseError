@@ -259,10 +259,12 @@ copy Debug\$(TargetName).map $(SolutionDir)..\Bin\Debug\ &gt;nul</Command>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <CustomBuildStep>
-      <Command>mkdir $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ 2&gt;nul
-copy Release\$(TargetName).exe $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy Release\$(TargetName).map $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;nul</Command>
-      <Outputs>$(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\$(TargetName).exe;%(Outputs)</Outputs>
+      <Command>mkdir $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ 2&gt;nul
+
+copy Release\ecc.exe $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ecc.exe &gt;nul
+
+copy Release\ecc.map $(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\ecc.map &gt;nul</Command>
+      <Outputs>$(SolutionDir)..\x32\SamTFE\Mods\PEFE2\Bin\$(TargetName).exe;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -306,10 +308,10 @@ copy Release\$(TargetName).map $(SolutionDir)..\x32\SamTSE\Mods\PESE2\Bin\ &gt;n
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <CustomBuildStep>
-      <Command>mkdir $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ 2&gt;nul
-copy Release\$(TargetName).exe $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ &gt;nul
-copy Release\$(TargetName).map $(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\ &gt;nul</Command>
-      <Outputs>$(SolutionDir)..\x64\SamTSE\Mods\PESE2\Bin\$(TargetName).exe;%(Outputs)</Outputs>
+      <Command>mkdir $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ 2&gt;nul
+copy Release\ecc.exe $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ecc.exe &gt;nul
+copy Release\ecc.map $(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\ecc.map &gt;nul</Command>
+      <Outputs>$(SolutionDir)..\x64\SamTFE\Mods\PEFE2\Bin\$(TargetName).exe;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
@@ -344,12 +346,12 @@ del %(RootDir)%(Directory)\Parser.c /q</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)\Parser.cpp;%(RootDir)%(Directory)\Parser.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)\Parser.cpp;%(RootDir)%(Directory)\Parser.h;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pushd $(SolutionDir)
-bison -o$(ProjectName)/Parser.c $(ProjectName)/Parser.y -d  
+bison -oEcc/Parser.c Ecc/Parser.y -d  
 popd
 copy %(RootDir)%(Directory)\Parser.c %(RootDir)%(Directory)\Parser.cpp  
 del %(RootDir)%(Directory)\Parser.c /q</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pushd $(SolutionDir)
-bison -o$(ProjectName)/Parser.c $(ProjectName)/Parser.y -d  
+bison -oEcc/Parser.c Ecc/Parser.y -d  
 popd
 copy %(RootDir)%(Directory)\Parser.c %(RootDir)%(Directory)\Parser.cpp  
 del %(RootDir)%(Directory)\Parser.c /q</Command>

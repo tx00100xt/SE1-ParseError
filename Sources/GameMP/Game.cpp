@@ -269,7 +269,7 @@ CEnableUserBreak::~CEnableUserBreak() {
 static void DumpDemoProfile(void)
 {
   CTString strFragment, strAnalyzed;
-  dem_iProfileRate = Clamp( dem_iProfileRate, 0, 60);
+  dem_iProfileRate = Clamp( dem_iProfileRate, (INDEX)0, (INDEX)60);
   strFragment = _pGame->DemoReportFragmentsProfile( dem_iProfileRate);
   strAnalyzed = _pGame->DemoReportAnalyzedProfile();
   try {
@@ -293,7 +293,7 @@ static void DumpDemoProfile(void)
 static void ReportDemoProfile(void)
 {
   CTString strFragment, strAnalyzed;
-  dem_iProfileRate = Clamp( dem_iProfileRate, 0, 60);
+  dem_iProfileRate = Clamp( dem_iProfileRate, (INDEX)0, (INDEX)60);
   strFragment = _pGame->DemoReportFragmentsProfile( dem_iProfileRate);
   strAnalyzed = _pGame->DemoReportAnalyzedProfile();
   CPrintF("%s", (const char *) strFragment);
@@ -2086,7 +2086,7 @@ static void PrintStats( CDrawPort *pdpDrawPort)
   }
 
   // if stats aren't required
-  hud_iStats = Clamp( hud_iStats, 0, 2);
+  hud_iStats = Clamp( hud_iStats, (INDEX)0, (INDEX)2);
 
 	// display fps and stats if needed
 	if (hud_iStats > 0) {
@@ -2180,7 +2180,7 @@ static void MakeSplitDrawports(enum CGame::SplitScreenCfg ssc, INDEX iCount, CDr
   // if observer
   if (ssc==CGame::SSC_OBSERVER) {
     // must have at least one screen
-    iCount = Clamp(iCount, 1, 4);
+    iCount = Clamp(iCount, (INDEX)1, (INDEX)4);
     // starting at first drawport
     iFirstObserver = 0;
   }
@@ -2388,10 +2388,10 @@ void CGame::GameRedrawView( CDrawPort *pdpDrawPort, ULONG ulFlags)
 		if (IsScriptSoundPlaying(14)) {
 			StopScriptSound((void*)14);
 		}
-    INDEX ctObservers = Clamp(gam_iObserverConfig, 0, 4);
-    INDEX iObserverOffset = ClampDn(gam_iObserverOffset, 0);
+    INDEX ctObservers = Clamp(gam_iObserverConfig, (INDEX)0, (INDEX)4);
+    INDEX iObserverOffset = ClampDn(gam_iObserverOffset, (INDEX)0);
     if (gm_CurrentSplitScreenCfg==SSC_OBSERVER) {
-      ctObservers = ClampDn(ctObservers, 1);
+      ctObservers = ClampDn(ctObservers, (INDEX)1);
     }
     if (gm_CurrentSplitScreenCfg!=SSC_OBSERVER) {
       if (!gam_bEnableAdvancedObserving || !GetSP()->sp_bCooperative) {

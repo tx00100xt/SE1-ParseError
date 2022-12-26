@@ -108,7 +108,7 @@ extern INDEX gam_iFPS;
 
 static void SetGameModeParameters(CSessionProperties &sp)
 {
-  sp.sp_gmGameMode = (CSessionProperties::GameMode) Clamp(INDEX(gam_iStartMode), -1, 2);
+  sp.sp_gmGameMode = (CSessionProperties::GameMode) Clamp(INDEX(gam_iStartMode), (INDEX)-1, (INDEX)2);
 
   switch (sp.sp_gmGameMode) {
   default:
@@ -138,7 +138,7 @@ static void SetDifficultyParameters(CSessionProperties &sp)
     sp.sp_bMental = FALSE;
   }
 
-  sp.sp_gdGameDifficulty = (CSessionProperties::GameDifficulty) Clamp(INDEX(iDifficulty), -1, 4);
+  sp.sp_gdGameDifficulty = (CSessionProperties::GameDifficulty) Clamp(INDEX(iDifficulty), (INDEX)-1, (INDEX)4);
 
   switch (sp.sp_gdGameDifficulty) {
   case CSessionProperties::GD_TOURIST:
@@ -246,7 +246,7 @@ void CGame::SetSinglePlayerSession(CSessionProperties &sp)
   sp.sp_fExtraEnemyStrength = gam_fExtraEnemyStrength;
   sp.sp_fExtraEnemyStrengthPerPlayer = 0;
 
-  sp.sp_iBlood = Clamp( gam_iBlood, 0, 3);
+  sp.sp_iBlood = Clamp( gam_iBlood, (INDEX)0, (INDEX)3);
   sp.sp_bGibs  = gam_bGibs;
   sp.sp_bUseExtraEnemies = TRUE;
 
@@ -360,7 +360,7 @@ void CGame::SetMultiPlayerSession(CSessionProperties &sp)
   sp.sp_fExtraEnemyStrengthPerPlayer = gam_fExtraEnemyStrengthPerPlayer;
   sp.sp_iInitialMana = gam_iInitialMana;
 
-  sp.sp_iBlood = Clamp( gam_iBlood, 0, 3);
+  sp.sp_iBlood = Clamp( gam_iBlood, (INDEX)0, (INDEX)3);
   //sp.sp_bGibs  = gam_bGibs;
   sp.sp_tmSpawnInvulnerability = gam_tmSpawnInvulnerability;
 
@@ -378,9 +378,9 @@ void CGame::SetMultiPlayerSession(CSessionProperties &sp)
 	sp.sp_bControlRunning = gam_bControlRunning;
 	sp.sp_bBackwardsGame = gam_bBackwardsGame;
 	sp.sp_bUseBots = gam_bUseBots;
-  sp.sp_iBotsPerPlayer = Clamp(gam_iBotsPerPlayer, 1, 6);
+  sp.sp_iBotsPerPlayer = Clamp(gam_iBotsPerPlayer, (INDEX)1, (INDEX)6);
   sp.sp_fBotSkill = gam_fBotSkill;
-  sp.sp_iPostTGPLevel = Clamp(gam_iPostTGPLevel, 0, 2);
+  sp.sp_iPostTGPLevel = Clamp(gam_iPostTGPLevel, (INDEX)0, (INDEX)2);
   sp.sp_bSkipLuxor = gam_bSkipLuxor;
 	sp.sp_bSkipSewers = gam_bSkipSewers;
 	sp.sp_bRandomLevels = gam_bRandomLevels;
