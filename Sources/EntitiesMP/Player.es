@@ -2063,9 +2063,9 @@ functions:
       INDEX iPing = (INDEX)ceil(penPlayer->en_tmPing*1000.0f);
       // add his stats short
       //strStats+="^cFFFFFF"+CenterString(penPlayer->GetPlayerName())+"^r\n\n";
-			strStats+=CTString(0, "%s", penPlayer->GetPlayerName());
+			strStats+=CTString(0, "%s", (const char*)penPlayer->GetPlayerName());
       strStats+="\n";
-      strStats+=AlignString(CTString(0, "%s:^r\n%d", TRANS("PING"), iPing));
+      strStats+=AlignString(CTString(0, "%s:^r\n%d", (const char*)TRANS("PING"), iPing));
       strStats+="\n";
       penPlayer->GetDetailStatsSP(strStats, 2);
 			strStats+="\n";
@@ -2122,7 +2122,7 @@ functions:
     strStats+="\n";
     if (iCoopType<=1) {
       if( m_bEndOfLevel) {
-        strStats+=AlignString(CTString(0, "%s:^r\n%s", (const char *) TRANS("ESTIMATED TIME"), TimeToString(m_tmEstTime)));
+        strStats+=AlignString(CTString(0, "%s:^r\n%s", (const char *) TRANS("ESTIMATED TIME"), (const char*)TimeToString(m_tmEstTime)));
         strStats+="\n";
         strStats+=AlignString(CTString(0, "%s:^r\n%d", (const char *) TRANS("TIME BONUS"), m_iTimeScore));
         strStats+="\n";

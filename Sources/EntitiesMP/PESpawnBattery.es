@@ -141,7 +141,7 @@ functions:
   const CTString &GetDescription(void) const {
     ((CTString&)m_strDescription).PrintF("-><none>");
     if (m_penTarget!=NULL) {
-      ((CTString&)m_strDescription).PrintF("->%s", m_penTarget->GetName());
+      ((CTString&)m_strDescription).PrintF("->%s", (const char *)m_penTarget->GetName());
     }
 		CTString strRange = "";
 		if (m_bUseBMan)			{ strRange += "BMan "; }
@@ -341,13 +341,13 @@ functions:
 		if (m_iRandomTotal==1) {
 			m_bUseSingleType = TRUE;
 		}
-		if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("m_iRandomTotal = %d\n", m_iRandomTotal); }
+		if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("m_iRandomTotal = %d\n", (const char *)m_iRandomTotal); }
 	}
 
 	void GetRandomTemplate(void)
 	{
 		m_iRandomChosen = IRnd()%m_iRandomTotal;
-		if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("m_iRandomChosen = %d\n", m_iRandomChosen); }
+		if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("m_iRandomChosen = %d\n", (const char *)m_iRandomChosen); }
 		INDEX iRandomTemp = -1;
 
 		if (m_bUseBMan) {
@@ -600,7 +600,7 @@ procedures:
 			// fire a spawner projectile
 			FireProjectile();
 
-			if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("Fire Projectile: %d\n", m_ctInGroup); }
+			if (GetSP()->sp_bTestSpawnerBatteries) { CPrintF("Fire Projectile: %d\n", (const char *)m_ctInGroup); }
       // wait between two entities in group
 			m_tmDelay = FRnd()*0.2f;
 			// wait between two entities in group

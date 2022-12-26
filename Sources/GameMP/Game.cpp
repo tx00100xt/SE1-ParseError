@@ -2055,7 +2055,7 @@ static void PrintStats( CDrawPort *pdpDrawPort)
 		strColon.PrintF( ":");
     pdpDrawPort->PutTextR( strColon,  slDPWidth*0.707f, slDPHeight*0.97f, C_WHITE|CT_OPAQUE);
 		pdpDrawPort->SetTextScaling( 0.6f*fTextScale);
-		strAMPMOut.PrintF( "%s", strAMPM);
+		strAMPMOut.PrintF( "%s", (const char*)strAMPM);
     pdpDrawPort->PutTextR( strAMPMOut,  slDPWidth*0.757f, slDPHeight*0.979f, C_WHITE|CT_OPAQUE);
   }
 

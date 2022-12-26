@@ -68,7 +68,7 @@ functions:
 			  if(m_penTarget){
 				  if(m_penTarget->PropertyForName(m_strProperty)==NULL) { 
 					  if(m_bDebug){
-						  CPrintF(TRANS("%s : %s Not Found\n"),m_strName,m_strProperty);
+						  CPrintF(TRANS("%s : %s Not Found\n"),(const char *)m_strName,(const char *)m_strProperty);
 					  }
 				  }else{
 					  if(m_ePT==ECT_ENTITY){
@@ -90,7 +90,7 @@ functions:
 									  *fNew=*((INDEX *)(((UBYTE *)(CEntity*) m_penSource.ep_pen)+offset1));
 								  }
 								  }else if(m_bDebug){
-								  CPrintF(TRANS("%s:Source Property %s not found\n"),GetName(),m_strSource);
+								  CPrintF(TRANS("%s:Source Property %s not found\n"),(const char *)GetName(),(const char *)m_strSource);
 							  }
 								  //if(*fValue!=NULL){
 								  if(m_eOperation==EO_SET){
@@ -105,7 +105,7 @@ functions:
 									  *fValue/=*fNew;
 								  }else{
 									  if(m_bDebug){
-										  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+										  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 									  }
 								  }
 								  
@@ -137,7 +137,7 @@ functions:
 								  if(*penNew){
 									  str2=((CEntity&)*penNew).GetName();
 								  }
-								  CPrintF(TRANS("%s changing Pointer %s from %s to %s\n"),m_strName,m_strProperty,str1,str2);
+								  CPrintF(TRANS("%s changing Pointer %s from %s to %s\n"),(const char *)m_strName,(const char *)m_strProperty,(const char *)str1,(const char *)str2);
 							  }
 							  //INDEX
 
@@ -165,29 +165,29 @@ functions:
 								  *iValue/=*iNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: Target Entity Property: %s.%s is currently (INDEX)%d\n"),m_strName,((CEntity&)*m_penTarget).GetName(),m_strProperty,iOld);
+								  CPrintF(TRANS("%s: Target Entity Property: %s.%s is currently (INDEX)%d\n"),(const char *)m_strName,(const char *)((CEntity&)*m_penTarget).GetName(),(const char *)m_strProperty,iOld);
 								  if(m_penSource&&m_penSource->PropertyForName(m_strSource)->ep_eptType==CEntityProperty::EPT_INDEX){
-									  CPrintF(TRANS("%s: Source Entity Property: %s.%s is currently (INDEX)%d\n"),m_strName,((CEntity&)*m_penSource).GetName(),m_strSource,*iNew);
+									  CPrintF(TRANS("%s: Source Entity Property: %s.%s is currently (INDEX)%d\n"),(const char *)m_strName,(const char *)((CEntity&)*m_penSource).GetName(),(const char *)m_strSource,*iNew);
 								  }else{
-									  CPrintF(TRANS("%s: Source Value: (INDEX)%d\n"),m_strName,m_iValue);
+									  CPrintF(TRANS("%s: Source Value: (INDEX)%d\n"),(const char *)m_strName,m_iValue);
 								  }
 								  if(m_eOperation==EO_SET){
-									  CPrintF(TRANS("%s: %s=(INDEX)%d\n"),m_strName,m_strProperty,*iValue);
+									  CPrintF(TRANS("%s: %s=(INDEX)%d\n"),(const char *)m_strName,(const char *)m_strProperty,*iValue);
 								  }else if(m_eOperation==EO_ADD){
-									  CPrintF(TRANS("%s: %s=(INDEX)%d+(INDEX)%d="),m_strName,m_strProperty,((CEntity&)*m_penTarget).GetName(),*iNew);
+									  CPrintF(TRANS("%s: %s=(INDEX)%s+(INDEX)%d="),(const char *)m_strName,(const char *)m_strProperty,(const char *)((CEntity&)*m_penTarget).GetName(),*iNew);
 									  CPrintF(TRANS("%d\n"),*iValue);
 								  }else if(m_eOperation==EO_SUBSTRACT){
-									  CPrintF(TRANS("%s: %s=(INDEX)%d-(INDEX)%d="),m_strName,m_strProperty,((CEntity&)*m_penTarget).GetName(),*iNew);
+									  CPrintF(TRANS("%s: %s=(INDEX)%s-(INDEX)%d="),(const char *)m_strName,(const char *)m_strProperty,(const char *)((CEntity&)*m_penTarget).GetName(),*iNew);
 									  CPrintF(TRANS("%d\n"),*iValue);
 								  }else if(m_eOperation==EO_MULTIPLY){
-									  CPrintF(TRANS("%s: %s=(INDEX)%d*(INDEX)%d="),m_strName,m_strProperty,((CEntity&)*m_penTarget).GetName(),*iNew);
+									  CPrintF(TRANS("%s: %s=(INDEX)%s*(INDEX)%d="),(const char *)m_strName,(const char *)m_strProperty,(const char *)((CEntity&)*m_penTarget).GetName(),*iNew);
 									  CPrintF(TRANS("%d\n"),*iValue);
 								  }else if(m_eOperation==EO_DIVIDE&&m_iValue!=0){
-									  CPrintF(TRANS("%s: %s=(INDEX)%d/(INDEX)%d="),m_strName,m_strProperty,((CEntity&)*m_penTarget).GetName(),*iNew);
+									  CPrintF(TRANS("%s: %s=(INDEX)%s/(INDEX)%d="),(const char *)m_strName,(const char *)m_strProperty,(const char *)((CEntity&)*m_penTarget).GetName(),*iNew);
 									  CPrintF(TRANS("%d\n"),*iValue);
 								  }
 							  }
@@ -251,7 +251,7 @@ functions:
 								  *rValue/=*rNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 
@@ -298,7 +298,7 @@ functions:
 								  *anValue/=*anNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 
@@ -347,7 +347,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 					  }else if(m_ePT==ECT_POSY){
@@ -375,7 +375,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 					  }else if(m_ePT==ECT_POSZ){
@@ -403,7 +403,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 					  }else if(m_ePT==ECT_ROTH){
@@ -431,7 +431,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 					  }else if(m_ePT==ECT_ROTP){
@@ -459,7 +459,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 					  }else if(m_ePT==ECT_ROTB){
@@ -487,7 +487,7 @@ functions:
 							  *fValue/=*fNew;
 						  }else{
 							  if(m_bDebug){
-								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							  }
 						  }
 				      }else if(m_penTarget->GetFlags()&ENF_ALIVE&&m_ePT==ECT_HEALTH){
@@ -515,7 +515,7 @@ functions:
 							((CLiveEntity&)*m_penTarget).SetHealth(fValue / *fNew);
 						}else{
 							if(m_bDebug){
-								CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+								CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 							}
 						}
 					  }else if(IsDerivedFromClass(m_penTarget,"MovableEntity")){
@@ -544,7 +544,7 @@ functions:
 								  *fValue/=*fNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 							  ((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -573,7 +573,7 @@ functions:
 								  *fValue/=*fNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 							  ((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -603,7 +603,7 @@ functions:
 								  *fValue/=*fNew;
 							  }else{
 								  if(m_bDebug){
-									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+									  CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 								  }
 							  }
 							  ((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -632,7 +632,7 @@ functions:
 									*fValue/=*fNew;
 								}else{
 									if(m_bDebug){
-										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 									}
 								}
 								((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -661,7 +661,7 @@ functions:
 									*fValue/=*fNew;
 								}else{
 									if(m_bDebug){
-										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 									}
 								}
 								((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -690,7 +690,7 @@ functions:
 									*fValue/=*fNew;
 								}else{
 									if(m_bDebug){
-										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 									}
 								}
 								((CMovableEntity&)*m_penTarget).AddToMovers();
@@ -719,7 +719,7 @@ functions:
 									*fValue/=*fNew;
 								}else{
 									if(m_bDebug){
-										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),m_strName);
+										CPrintF(TRANS("%s: DO NOT DIVIDE THROUGH 0!\n"),(const char *)m_strName);
 									}
 								}
 								((CMovableEntity&)*m_penTarget).AddToMovers();

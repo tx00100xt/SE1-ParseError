@@ -656,7 +656,7 @@ procedures:
     if (GetSP()->sp_bCooperative && m_bCanBeenPicked) {
 			if (IsOfClass(epass.penOther, "Player")) {
 				CTString strKey = GetKeyName(m_kitType);
-				CPrintF(TRANS("^cFF0000%s - %s^r\n"), ((CPlayer &)*epass.penOther).GetPlayerName(), strKey);
+				CPrintF(TRANS("^cFF0000%s - %s^r\n"), (const char*)((CPlayer &)*epass.penOther).GetPlayerName(), (const char*)strKey);
 			}
 		}
 

@@ -85,15 +85,15 @@ functions:
 				BOOL bResult=0,be=0;
 				if(m_penifCondition2){
 					if(m_bDebug&&m_eCT1==ECT_ENTITY&&m_eCT2==ECT_ENTITY&&m_penifCondition1->PropertyForName(m_strProperty1)&&m_penifCondition2->PropertyForName(m_strProperty2)&&m_penifCondition1->PropertyForName(m_strProperty1)->ep_eptType!=m_penifCondition2->PropertyForName(m_strProperty2)->ep_eptType){
-						CPrintF(TRANS("%s : Different Data Types\n"),m_strName);
+						CPrintF(TRANS("%s : Different Data Types\n"),(const char *)m_strName);
 					}
 				}else{
 					if(m_bDebug){
-						CPrintF(TRANS("%s:Second Condition Target not set\n"),m_strName);
+						CPrintF(TRANS("%s:Second Condition Target not set\n"),(const char *)m_strName);
 					}
 				}
 				if(m_eCT1==ECT_ENTITY&&m_bDebug&&m_penifCondition1->PropertyForName(m_strProperty1)==NULL) { 
-					CPrintF(TRANS("Condition 1 : %s : %s Not Found\n"),m_strName,m_strProperty1);
+					CPrintF(TRANS("Condition 1 : %s : %s Not Found\n"),(const char *)m_strName,(const char *)m_strProperty1);
 				}else if(m_eCT1==ECT_TYPE){
 					if(IsDerivedFromClass(m_penifCondition1, m_strClass)){
 						bResult=TRUE;
@@ -180,7 +180,7 @@ functions:
 						}else{
 							be=true;
 							if(m_bDebug){
-								CPrintF(TRANS("%s 1: Don't use speeds on not moving entities or health on entities without health\n"),m_strName);
+								CPrintF(TRANS("%s 1: Don't use speeds on not moving entities or health on entities without health\n"),(const char *)m_strName);
 							}
 						}
 						if(m_penifCondition2){
@@ -254,11 +254,11 @@ functions:
 							}else{
 								be=true;
 								if(m_bDebug){
-									CPrintF(TRANS("%s 2: Don't use speeds on not moving entities or health on entities without health\n"),m_strName);
+									CPrintF(TRANS("%s 2: Don't use speeds on not moving entities or health on entities without health\n"),(const char *)m_strName);
 								}
 							}
 						}else{
-							CPrintF(TRANS("%sSet the second condition target goddammit\n"),GetName());
+							CPrintF(TRANS("%s Set the second condition target goddammit\n"),(const char *)GetName());
 						}
 					}
 					
@@ -317,7 +317,7 @@ functions:
 								}
 							}else{
 								if(m_bDebug){
-									CPrintF(TRANS("%s:Second Condition Pointer not set, checking if %s.%s exists instead\n"),m_strName,((CEntity&)*m_penifCondition1).GetName(),m_strProperty1);
+									CPrintF(TRANS("%s:Second Condition Pointer not set, checking if %s.%s exists instead\n"),(const char *)m_strName,(const char *)((CEntity&)*m_penifCondition1).GetName(),(const char *)m_strProperty1);
 								}
 								if(penPointer!=NULL){
 									bResult=TRUE;
@@ -349,7 +349,7 @@ functions:
 					}else{
 						be=true;
 						if(m_bDebug){
-							CPrintF(TRANS("%s : Unsupported Data Type\n"),m_strName);
+							CPrintF(TRANS("%s : Unsupported Data Type\n"),(const char *)m_strName);
 						}
 					}
 				} 
@@ -360,20 +360,20 @@ functions:
 				if(bResult){
 					if(m_penifTarget){
 						if(m_bDebug){
-							CPrintF(TRANS("%s: Triggering if Target:%s\n"),m_strName,m_penifTarget->GetName());
+							CPrintF(TRANS("%s: Triggering if Target:%s\n"),(const char *)m_strName,(const char *)m_penifTarget->GetName());
 						}
 						m_penifTarget->SendEvent(ETrigger());
 					}else if(m_bDebug){
-						CPrintF(TRANS("%s: Result=TRUE, but no if Target to trigger\n"),m_strName);
+						CPrintF(TRANS("%s: Result=TRUE, but no if Target to trigger\n"),(const char *)m_strName);
 					}
 				}else{
 					if(m_penelseTarget){
 						if(m_bDebug){
-							CPrintF(TRANS("%s: Triggering else Target:%s\n"),m_strName,m_penelseTarget->GetName());
+							CPrintF(TRANS("%s: Triggering else Target:%s\n"),(const char *)m_strName,(const char *)m_penelseTarget->GetName());
 						}
 						m_penelseTarget->SendEvent(ETrigger());
 					}else if(m_bDebug){
-						CPrintF(TRANS("%s: Result=FALSE, but no else Target to trigger\n"),m_strName);
+						CPrintF(TRANS("%s: Result=FALSE, but no else Target to trigger\n"),(const char *)m_strName);
 					}
 				}
 			}

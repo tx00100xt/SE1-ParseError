@@ -1511,7 +1511,7 @@ void ParseCPP(void)
 	CPrintF("^cff0000Parsing CPP File...\n");
 	CTString strFileName = "Rail";
   CTFileName fn;
-  fn.PrintF("Files\\%s.cpp", strFileName);
+  fn.PrintF("Files\\%s.cpp", (const char *)strFileName);
 
 	if (FileExists(fn)) {
 		CTString strLine;
@@ -1526,14 +1526,14 @@ void ParseCPP(void)
 		// if anything failed
 		} catch (const char *strError) {
 			// report error
-			CPrintF(TRANS("\n"), strError);
+			CPrintF(TRANS("\n"), (const char *)strError);
 		}
 
 		// create file
 		CTFileStream strmFile;
 		CTFileName fnm;
-		fnm.PrintF("Files\\%sP.cpp", strFileName);
-		CPrintF("^cff0000Creating CPP File...%s\n", fnm);
+		fnm.PrintF("Files\\%sP.cpp", (const char *)strFileName);
+		CPrintF("^cff0000Creating CPP File...%s\n", (const char *)fnm);
 		strmFile.Create_t( fnm, CTStream::CM_TEXT);
 
 		// repeat
@@ -1549,7 +1549,7 @@ void ParseCPP(void)
 			strLineShort.TrimRight(5);
 			if (strLineShort!="#line") {
 				//CPrintF("%s\n", strLine);
-				strLine.PrintF("%s", strLine);
+				strLine.PrintF("%s", (const char *)strLine);
 				strmFile.PutLine_t( strLine);
 			}
 		}

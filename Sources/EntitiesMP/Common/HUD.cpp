@@ -1860,7 +1860,7 @@ extern void DrawHUD( const CPlayer *penPlayerCurrent, CDrawPort *pdpCurrent, BOO
 							} 
 							CTString strTmp;    
 							// put name under icon
-							strTmp.PrintF("%s", strName); 
+							strTmp.PrintF("%s", (const char*)strName); 
 							if( m_fPlayerHealth<=0.01f) { 
 								_pDP->PutTextC( strTmp, posX, posZ+4*fScaling, C_WHITE|200);
 							} else {

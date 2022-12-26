@@ -111,7 +111,7 @@ procedures:
 							bstr=TRUE;
 						}
 					}else if( m_bDebug){
-						CPrintF(TRANS("%s:Property not found\n"),m_strName);
+						CPrintF(TRANS("%s:Property not found\n"),(const char *)m_strName);
 					}
 				}else if(m_eVT==ECT_POSX){
 					fValue=m_penTarget->GetPlacement().pl_PositionVector(1);
@@ -168,11 +168,11 @@ procedures:
 					}
 
 				}else if(m_bDebug){
-					CPrintF(TRANS("%s 1: Don't use speeds on not moving entities or health on entities without health\n"),m_strName);
+					CPrintF(TRANS("%s 1: Don't use speeds on not moving entities or health on entities without health\n"),(const char *)m_strName);
 				}
 
 			}else if(m_bDebug){
-				CPrintF(TRANS("%s:No target set\n"),m_strName);
+				CPrintF(TRANS("%s:No target set\n"),(const char *)m_strName);
 			}
 			if (bf){
 				strReplace.PrintF(TRANS("%f"),fValue);
@@ -189,7 +189,7 @@ procedures:
 				}
 			}else if(!bstr){
 				if(m_bDebug){
-					CPrintF(TRANS("%s: Unknown Error(maybe wrong data type)\n"),m_strName);
+					CPrintF(TRANS("%s: Unknown Error(maybe wrong data type)\n"),(const char *)m_strName);
 				}
 				if(m_bDeactivate){
 					{FOREACHINDYNAMICCONTAINER(GetWorld()->wo_cenEntities, CEntity, iten) {
@@ -236,7 +236,7 @@ procedures:
 					}
 					if(IsOfClass(eTrigger.penCaused,"Player")){
 						if(m_bDebug){
-							CPrintF(TRANS("%s: Recieved ETrigger from Player, adding to display list.\n"),GetName());
+							CPrintF(TRANS("%s: Recieved ETrigger from Player, adding to display list.\n"),(const char *)GetName());
 						}
 						if(!((CPlayer&)*eTrigger.penCaused).m_dcDisplay.IsMember(this)){
 							((CPlayer&)*eTrigger.penCaused).m_dcDisplay.Add(this);
@@ -249,7 +249,7 @@ procedures:
 			on (EStart eStart) : {
 				if(IsOfClass(eStart.penCaused,"Player")){
 					if(m_bDebug){
-						CPrintF(TRANS("%s: Recieved EStart from Player, removing from display list.\n"),GetName());
+						CPrintF(TRANS("%s: Recieved EStart from Player, removing from display list.\n"),(const char *)GetName());
 					}
 					if(((CPlayer&)*eStart.penCaused).m_dcDisplay.IsMember(this)){
 						((CPlayer&)*eStart.penCaused).m_dcDisplay.Remove(this);
@@ -259,7 +259,7 @@ procedures:
 			}
 			on (EEnvironmentStart eStart):{
 				if(m_bDebug){
-					CPrintF(TRANS("%s: Recieved EEnvironmentStart, adding all players to display list list.\n"),GetName());
+					CPrintF(TRANS("%s: Recieved EEnvironmentStart, adding all players to display list list.\n"),(const char *)GetName());
 				}
 				CEntityPointer penPlayer;
 				for (INDEX iPlayer=0; iPlayer<GetMaxPlayers(); iPlayer++) {
@@ -274,7 +274,7 @@ procedures:
 			}
 			on (EStop):{
 				if(m_bDebug){
-					CPrintF(TRANS("%s: Recieved ETrigger from Player, removing all players from display list list.\n"),GetName());
+					CPrintF(TRANS("%s: Recieved ETrigger from Player, removing all players from display list list.\n"),(const char *)GetName());
 				}
 				CEntityPointer penPlayer;
 				for (INDEX iPlayer=0; iPlayer<GetMaxPlayers(); iPlayer++) {
@@ -282,7 +282,7 @@ procedures:
 					if(penPlayer!=NULL){
 						if(((CPlayer&)*penPlayer).m_dcDisplay.IsMember(this)){
 								if(m_bDebug){
-									CPrintF(TRANS("%s: Player found, removing us from display list.\n"),GetName());
+									CPrintF(TRANS("%s: Player found, removing us from display list.\n"),(const char *)GetName());
 								}
 							((CPlayer&)*penPlayer).m_dcDisplay.Remove(this);
 						}

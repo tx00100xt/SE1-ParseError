@@ -115,7 +115,7 @@ functions:
       // if triggered by a player
       if( IsDerivedFromClass(eTrigger.penCaused, "Player")) {
 				if (hud_bShowPEInfo) {
-					CPrintF("PlayerActionMarker: %s, Triggered by: Player\n", m_strDescription);
+					CPrintF("PlayerActionMarker: %s, Triggered by: Player\n", (const char*)m_strDescription);
 				}
         // send it event to start auto actions from here
         EAutoAction eAutoAction;
@@ -129,7 +129,7 @@ functions:
       // if triggered by a player bot
       else if( IsDerivedFromClass(eTrigger.penCaused, "PlayerBot")) {
 				if (hud_bShowPEInfo) {
-					CPrintF("PlayerActionMarker %s, Triggered by: Player Bot\n", m_strDescription);
+					CPrintF("PlayerActionMarker %s, Triggered by: Player Bot\n", (const char*)m_strDescription);
 				}
 				CEntity *pen = eTrigger.penCaused;
 				// send event to the bot's owner
@@ -145,7 +145,7 @@ functions:
 			// if somehow we ended up being triggered by something else, really bad idea?
 			else {
 				if (hud_bShowPEInfo) {
-					CPrintF("PlayerActionMarker: %s, Triggered by: Other ... Do fixup to player?\n", m_strDescription);
+					CPrintF("PlayerActionMarker: %s, Triggered by: Other ... Do fixup to player?\n", (const char*)m_strDescription);
 				}
 				// get a player to send the event to
 				/*CEntity *penCaused = FixupCausedToPlayer(this, eTrigger.penCaused);
