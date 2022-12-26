@@ -63,7 +63,7 @@ Type this in your terminal:
 
 ```
 git clone https://github.com/tx00100xt/SE1-ParseError.git
-cd SeriousSamAlphaRemake/Sources
+cd SE1-ParseError/Sources
 bash build-linux64.sh                     # use build-linux32.sh for 32-bits
 bash build-linux64xplus.sh                # use build-linux32xplus.sh for 32-bits
 ```
