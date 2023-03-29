@@ -2765,5 +2765,20 @@
     <CustomBuild Include="Reminder.es">
       <Filter>Class Files\Tools</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\BaseEvents.es">
+      <Filter>Class Files\AI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableBrushEntity.es">
+      <Filter>Class Files\AI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableEntity.es">
+      <Filter>Class Files\AI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableModelEntity.es">
+      <Filter>Class Files\AI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\PlayerEntity.es">
+      <Filter>Class Files\AI</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

@@ -4559,6 +4559,103 @@ ecc EntitiesMP/%(Filename).es </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\Engine\Classes\BaseEvents.es">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine/Classes/%(Filename).es </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableBrushEntity.es">
+      <FileType>Document</FileType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableEntity.es">
+      <FileType>Document</FileType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\MovableModelEntity.es">
+      <FileType>Document</FileType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+    </CustomBuild>
+    <CustomBuild Include="..\Engine\Classes\PlayerEntity.es">
+      <FileType>Document</FileType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine/Classes/%(Filename).es </Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Engine/Classes/%(Filename).es </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd $(SolutionDir)
+ecc Engine/Classes/%(Filename).es </Command>
+    </CustomBuild>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
