@@ -98,7 +98,10 @@ Supported OS
 ### Build status
 |CI|Platform|Compiler|Configurations|Platforms|Status|
 |---|---|---|---|---|---|
-|GitHub Actions|Windows, Ubuntu|MSVC, GCC|Release|x64|![GitHub Actions Build Status](https://github.com/tx00100xt/SE1-ParseError/actions/workflows/cibuild.yml/badge.svg)
+|GitHub Actions|Windows, Ubuntu, Alpine, FreeBSD|MSVC, GCC, Clang|Release|x86, x64|![GitHub Actions Build Status](https://github.com/tx00100xt/SE1-ParseError/actions/workflows/cibuild.yml/badge.svg)
+
+You can download a the automatically build based on the latest commit.  
+To do this, go to the [Actions tab], select the top workflows, and then Artifacts.
 
 License
 -------
@@ -110,3 +113,4 @@ License
 [SamTSE-ParseError.tar.xz]: https://drive.google.com/file/d/1W4ykVtZY_8iUl1diZSgoB3oGZ48gbnIm/view?usp=sharing "Serious Sam Classic PESE Mod"
 [Visual Studio 2015 Community Edition]: https://go.microsoft.com/fwlink/?LinkId=615448&clcid=0x409 "Visual Studio 2015 Community Edition"
 [Windows 10 SDK 10.0.14393.795]: https://go.microsoft.com/fwlink/p/?LinkId=838916 "Windows 10 SDK 10.0.14393.795"
+[Actions tab]: https://github.com/tx00100xt/SE1-ParseError/actions "Download Artifacts"
