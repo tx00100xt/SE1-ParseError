@@ -484,15 +484,15 @@ jobs:
             cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-armv7l-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mbe32 -DCMAKE_CXX_FLAGS=-mbe32 -DUSE_I386_NASM_ASM=FALSE -DRPI4=TRIE
             make -C SE1-ParseError/Sources/build-armv7l ecc
             make -j4 -C SE1-ParseError/Sources/build-armv7l
-            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/*.so x32/SamTSE/Mods/PESE2/Bin
-            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libEntitiesMP.so x32/SamTFE/Mods/PEFE2/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libGameMP.so x32/SamTFE/Mods/PEFE2/Bin/libGame.so
+            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/*.so SE1-ParseError/x32/SamTSE/Mods/PESE2/Bin
+            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libGameMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2/Bin/libGame.so
             cp -vfr SE1-ParseError/Sources/EntitiesMP/PlayerWeaponsHD.es SE1-ParseError/Sources/EntitiesMP/PlayerWeapons.es
             make -C SE1-ParseError/Sources/build-armv7l-xplus ecc
             make -j4 -C SE1-ParseError/Sources/build-armv7l-xplus
-            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/*.so x32/SamTSE/Mods/PESE2HD/Bin
-            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libEntitiesMP.so x32/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libGameMP.so x32/SamTFE/Mods/PEFE2HD/Bin/libGame.so             
+            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/*.so SE1-ParseError/x32/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libGameMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2HD/Bin/libGame.so             
             mv SE1-ParseError/x32 armv7l
             XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz armv7l
             cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz Release/
@@ -553,15 +553,15 @@ jobs:
             cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-aarch64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DRPI4=TRIE
             make -C SE1-ParseError/Sources/build-aarch64 ecc
             make -j4 -C SE1-ParseError/Sources/build-aarch64
-            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/*.so x64/SamTSE/Mods/PESE2/Bin
-            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libEntitiesMP.so x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libGameMP.so x64/SamTFE/Mods/PEFE2/Bin/libGame.so
+            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/*.so SE1-ParseError/x64/SamTSE/Mods/PESE2/Bin
+            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libGameMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2/Bin/libGame.so
             cp -vfr SE1-ParseError/Sources/EntitiesMP/PlayerWeaponsHD.es SE1-ParseError/Sources/EntitiesMP/PlayerWeapons.es
             make -C SE1-ParseError/Sources/build-aarch64-xplus ecc
             make -j4 -C SE1-ParseError/Sources/build-aarch64-xplus
-            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/*.so x64/SamTSE/Mods/PESE2HD/Bin
-            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libEntitiesMP.so x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libGameMP.so x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so           
+            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/*.so SE1-ParseError/x64/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libGameMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so           
             mv SE1-ParseError/x64 aarch64
             XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz aarch64
             cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz Release/
