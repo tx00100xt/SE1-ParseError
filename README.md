@@ -23,6 +23,11 @@ DwK (Dance with Kleer) is author this mod for windows.
 
 Download [SamTFE-ParseError.tar.xz] archive and unpack to  SeriousSamClassic/SamTFE/ directory.
 Download [SamTSE-ParseError.tar.xz] archive and unpack to  SeriousSamClassic/SamTSE/ directory.
+You can also download the archive using curl or wget:
+```
+wget https://archive.org/download/sam-tfe-parse-error/SamTFE-ParseError.tar.xz
+wget https://archive.org/download/sam-tse-parse-error/SamTSE-ParseError.tar.xz
+```
 To start the modification, use the game menu - item Modification.
 
 Building Serious Sam Classic Parse Error modification (for SS:TFE and for SS:TSE).
