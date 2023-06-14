@@ -51,22 +51,22 @@ jobs:
     - name: Run CMake and Build
       shell: alpine.sh {0}
       run: |
-          cd ${{github.workspace}}/Sources
-          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE
-          cd ${{github.workspace}}/Sources/build-x86    
-          make -j$(nproc || echo 4)
-          make install
-          cd ${{github.workspace}}/Sources
-          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE -DXPLUS=TRUE 
-          cd ${{github.workspace}}/Sources/build-x86-xplus    
-          make -j$(nproc || echo 4)
-          make install
-          mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x32/SamTSE/Mods/PEFE2
-          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PEFE2HD
-          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2
-          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2HD           
-          cd ${{github.workspace}}
-          tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86-bin.tar.xz x32
+        cd ${{github.workspace}}/Sources 
+        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE
+        cd ${{github.workspace}}/Sources/build-x86    
+        make -j$(nproc || echo 4)
+        make install
+        cd ${{github.workspace}}/Sources
+        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE -DXPLUS=TRUE 
+        cd ${{github.workspace}}/Sources/build-x86-xplus    
+        make -j$(nproc || echo 4)
+        make install
+        mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x32/SamTSE/Mods/PEFE2
+        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PEFE2HD
+        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2
+        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2HD           
+        cd ${{github.workspace}}
+        tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86-bin.tar.xz x32
           
     - name: Upload artifact
       uses: actions/upload-artifact@v3
@@ -114,25 +114,25 @@ jobs:
         rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD/Bin
         rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD/Bin
 
-    - name: Run Build
+    - name: Run CMake and Build
       shell: alpine.sh {0}
       run: |
-          cd ${{github.workspace}}/Sources 
-          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
-          cd ${{github.workspace}}/Sources/build-x64    
-          make -j$(nproc || echo 4)
-          make install
-          cd ${{github.workspace}}/Sources 
-          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DXPLUS=TRUE 
-          cd ${{github.workspace}}/Sources/build-x64-xplus    
-          make -j$(nproc || echo 4)
-          make install
-          mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
-          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
-          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2
-          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD           
-          cd ${{github.workspace}}
-          tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86_64-bin.tar.xz x64
+        cd ${{github.workspace}}/Sources 
+        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
+        cd ${{github.workspace}}/Sources/build-x64    
+        make -j$(nproc || echo 4)
+        make install
+        cd ${{github.workspace}}/Sources 
+        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DXPLUS=TRUE 
+        cd ${{github.workspace}}/Sources/build-x64-xplus    
+        make -j$(nproc || echo 4)
+        make install
+        mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
+        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
+        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2
+        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD           
+        cd ${{github.workspace}}
+        tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86_64-bin.tar.xz x64
           
     - name: Upload artifact
       uses: actions/upload-artifact@v3
