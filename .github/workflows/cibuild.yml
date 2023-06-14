@@ -62,9 +62,9 @@ jobs:
         make -j$(nproc || echo 4)
         make install
         mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x32/SamTSE/Mods/PEFE2
-        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PEFE2HD
-        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2
-        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2HD           
+        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}}/x32/SamTSE/Mods/PEFE2HD
+        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}}/x32/SamTSE/Mods/PESE2
+        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}}/x32/SamTSE/Mods/PESE2HD           
         cd ${{github.workspace}}
         tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86-bin.tar.xz x32
           
@@ -128,9 +128,9 @@ jobs:
         make -j$(nproc || echo 4)
         make install
         mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
-        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
-        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2
-        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD           
+        mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD
+        mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PESE2
+        mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD           
         cd ${{github.workspace}}
         tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86_64-bin.tar.xz x64
           
