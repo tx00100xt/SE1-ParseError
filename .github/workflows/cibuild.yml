@@ -188,7 +188,7 @@ jobs:
           make -j$(nproc || echo 4)
           make install
           mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
-          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2 
+          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PESE2 
           
     - name: Run CMake
       run: |
@@ -201,8 +201,8 @@ jobs:
           cd ${{github.workspace}}/Sources/build-x64-xplus    
           make -j$(nproc || echo 4)
           make install
-          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
-          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD            
+          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD
+          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD            
           cd ${{github.workspace}}
           XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-amd64-bin.tar.xz x64
           
