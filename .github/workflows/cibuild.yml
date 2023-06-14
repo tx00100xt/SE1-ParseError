@@ -37,30 +37,34 @@ jobs:
       run: |
         echo "${{ steps.date.outputs.time }}"
         
-    - name: Run CMake
+    - name: Run Prepare
       shell: alpine.sh {0}
       run: |
         cd ${{github.workspace}}/Sources 
         find . -name "CMakeLists.txt" -exec sed -i 's/-march=native/-mtune=generic/g' {} +
         cat CMakeLists.txt | grep mtune
-        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE
-        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE
+        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PEFE2/Bin
+        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PESE2HD/Bin
 
-    - name: Run Build
+    - name: Run CMake and Build
       shell: alpine.sh {0}
       run: |
+          cd ${{github.workspace}}/Sources
+          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE
           cd ${{github.workspace}}/Sources/build-x86    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x32/SamTSE/Mods/PESE2/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x32/SamTFE/Mods/PEFE2/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x32/SamTFE/Mods/PEFE2/Bin/libGame.so
+          make install
+          cd ${{github.workspace}}/Sources
+          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x86-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DCMAKE_C_FLAGS=-mmmx -DCMAKE_CXX_FLAGS=-mmmx -DUSE_I386_NASM_ASM=TRUE -DXPLUS=TRUE 
           cd ${{github.workspace}}/Sources/build-x86-xplus    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x32/SamTSE/Mods/PESE2HD/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x32/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x32/SamTFE/Mods/PEFE2HD/Bin/libGame.so            
+          make install
+          mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x32/SamTSE/Mods/PEFE2
+          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PEFE2HD
+          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2
+          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x32/SamTSE/Mods/PESE2HD           
           cd ${{github.workspace}}
           tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86-bin.tar.xz x32
           
@@ -99,30 +103,34 @@ jobs:
       run: |
         echo "${{ steps.date.outputs.time }}"
         
-    - name: Run CMake
+    - name: Run Prepare
       shell: alpine.sh {0}
       run: |
         cd ${{github.workspace}}/Sources 
         find . -name "CMakeLists.txt" -exec sed -i 's/-march=native/-mtune=generic/g' {} +
         cat CMakeLists.txt | grep mtune
-        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
-        CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD/Bin
 
     - name: Run Build
       shell: alpine.sh {0}
       run: |
+          cd ${{github.workspace}}/Sources 
+          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
           cd ${{github.workspace}}/Sources/build-x64    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libGame.so
+          make install
+          cd ${{github.workspace}}/Sources 
+          CFLAGS="-w" CXXFLAGS="-w" cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DXPLUS=TRUE 
           cd ${{github.workspace}}/Sources/build-x64-xplus    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so            
+          make install
+          mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
+          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
+          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2
+          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD           
           cd ${{github.workspace}}
           tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-alpine-x86_64-bin.tar.xz x64
           
@@ -159,7 +167,14 @@ jobs:
     - name: Show current date
       run: |
         echo "${{ steps.date.outputs.time }}"
-        
+
+    - name: Prepare
+      run: |
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD/Bin 
+       
     - name: Run CMake
       run: |
           cd ${{github.workspace}}/Sources
@@ -170,27 +185,24 @@ jobs:
     - name: Run Build
       run: |
           cd ${{github.workspace}}/Sources/build-x64    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libGame.so  
+          make install
+          mv -f ${{github.workspace}}/Mods/PEFE2/Bin ${{github.workspace}}/x64/SamTSE/Mods/PEFE2
+          mv -f ${{github.workspace}}/Mods/PESE2/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2 
           
     - name: Run CMake
       run: |
           cd ${{github.workspace}}/Sources
-          cp -vfr EntitiesMP/PlayerWeaponsHD.es EntitiesMP/PlayerWeapons.es
           cat CMakeLists.txt | grep mtune
-          cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}  
+          cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DXPLUS=TRUE 
           
     - name: Run Build
       run: |
           cd ${{github.workspace}}/Sources/build-x64-xplus    
-          make ecc
           make -j$(nproc || echo 4)
-          cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
-          cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-          cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so            
+          make install
+          mv -f ${{github.workspace}}/Mods/PEFE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PEFE2HD
+          mv -f ${{github.workspace}}/Mods/PESE2HD/Bin ${{github.workspace}/x64/SamTSE/Mods/PESE2HD            
           cd ${{github.workspace}}
           XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-amd64-bin.tar.xz x64
           
@@ -229,8 +241,8 @@ jobs:
       run: | 
          msbuild /m /p:Configuration="${{ matrix.Configuration }}" /p:Platform="${{ matrix.Platform }}" ParseError.sln
          cd ${{github.workspace}}
-         copy x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x32\SamTFE\Mods\PEFE2\Bin\Entities.dll    
-         copy x32\SamTSE\Mods\PESE2\Bin\GameMP.dll x32\SamTFE\Mods\PEFE2\Bin\Game.dll
+         copy x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x32\SamTSE\Mods\PEFE2\Bin\Entities.dll    
+         copy x32\SamTSE\Mods\PESE2\Bin\GameMP.dll x32\SamTSE\Mods\PEFE2\Bin\Game.dll
          del x32\SamTSE\Mods\PESE2\Bin\*.*
          del Sources\EntitiesMP\PlayerWeapons.es
          copy Sources\EntitiesMP\PlayerWeaponsHD.es Sources\EntitiesMP\PlayerWeapons.es
@@ -239,11 +251,11 @@ jobs:
          msbuild /m /p:Configuration="${{ matrix.Configuration }}" /p:Platform="${{ matrix.Platform }}" ParseError.sln
          cd ${{github.workspace}}
          copy x32\SamTSE\Mods\PESE2\Bin\*.dll x32\SamTSE\Mods\PESE2HD\Bin    
-         copy x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x32\SamTFE\Mods\PEFE2HD\Bin\Entities.dll            
-         copy x32\SamTSE\Mods\PESE2\Bin\GameMP.dll x32\SamTFE\Mods\PEFE2HD\Bin\Game.dll      
+         copy x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x32\SamTSE\Mods\PEFE2HD\Bin\Entities.dll            
+         copy x32\SamTSE\Mods\PESE2\Bin\GameMP.dll x32\SamTSE\Mods\PEFE2HD\Bin\Game.dll      
          del x32\SamTSE\Mods\PESE2\Bin\*.*  
-         copy x32\SamTFE\Mods\PEFE2\Bin\Entities.dll x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll    
-         copy x32\SamTFE\Mods\PEFE2\Bin\Game.dll x32\SamTSE\Mods\PESE2\Bin\GameMP.dll        
+         copy x32\SamTSE\Mods\PEFE2\Bin\Entities.dll x32\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll    
+         copy x32\SamTSE\Mods\PEFE2\Bin\Game.dll x32\SamTSE\Mods\PESE2\Bin\GameMP.dll        
          7z a -mx=9 SeriousSam-ParseError-${{ steps.date.outputs.time }}-win32-bin.7z x32
       
     - name: Upload artifact
@@ -282,8 +294,8 @@ jobs:
       run: | 
          msbuild /m /p:Configuration="${{ matrix.Configuration }}" /p:Platform="${{ matrix.Platform }}" ParseError.sln
          cd ${{github.workspace}}
-         copy x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x64\SamTFE\Mods\PEFE2\Bin\Entities.dll    
-         copy x64\SamTSE\Mods\PESE2\Bin\GameMP.dll x64\SamTFE\Mods\PEFE2\Bin\Game.dll
+         copy x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x64\SamTSE\Mods\PEFE2\Bin\Entities.dll    
+         copy x64\SamTSE\Mods\PESE2\Bin\GameMP.dll x64\SamTSE\Mods\PEFE2\Bin\Game.dll
          del x64\SamTSE\Mods\PESE2\Bin\*.*
          del Sources\EntitiesMP\PlayerWeapons.es
          copy Sources\EntitiesMP\PlayerWeaponsHD.es Sources\EntitiesMP\PlayerWeapons.es
@@ -292,11 +304,11 @@ jobs:
          msbuild /m /p:Configuration="${{ matrix.Configuration }}" /p:Platform="${{ matrix.Platform }}" ParseError.sln
          cd ${{github.workspace}}
          copy x64\SamTSE\Mods\PESE2\Bin\*.dll x64\SamTSE\Mods\PESE2HD\Bin    
-         copy x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x64\SamTFE\Mods\PEFE2HD\Bin\Entities.dll            
-         copy x64\SamTSE\Mods\PESE2\Bin\GameMP.dll x64\SamTFE\Mods\PEFE2HD\Bin\Game.dll      
+         copy x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll x64\SamTSE\Mods\PEFE2HD\Bin\Entities.dll            
+         copy x64\SamTSE\Mods\PESE2\Bin\GameMP.dll x64\SamTSE\Mods\PEFE2HD\Bin\Game.dll      
          del x64\SamTSE\Mods\PESE2\Bin\*.*  
-         copy x64\SamTFE\Mods\PEFE2\Bin\Entities.dll x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll    
-         copy x64\SamTFE\Mods\PEFE2\Bin\Game.dll x64\SamTSE\Mods\PESE2\Bin\GameMP.dll        
+         copy x64\SamTSE\Mods\PEFE2\Bin\Entities.dll x64\SamTSE\Mods\PESE2\Bin\EntitiesMP.dll    
+         copy x64\SamTSE\Mods\PEFE2\Bin\Game.dll x64\SamTSE\Mods\PESE2\Bin\GameMP.dll        
          7z a -mx=9 SeriousSam-ParseError-${{ steps.date.outputs.time }}-win64-bin.7z x64
       
         
@@ -342,21 +354,18 @@ jobs:
             cat CMakeLists.txt | grep mtune
             cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
             cd ${{github.workspace}}/Sources/build-x64
-            make ecc
             make -j$(sysctl -n hw.ncpu || echo 4)
             cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
-            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
-            cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2/Bin/libGame.so
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libGame.so
             cd ${{github.workspace}}/Sources
-            cp -vfr EntitiesMP/PlayerWeaponsHD.es EntitiesMP/PlayerWeapons.es
             cat CMakeLists.txt | grep mtune
-            cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
+            cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DXPLUS=TRUE 
             cd ${{github.workspace}}/Sources/build-x64-xplus
-            make ecc
             make -j$(sysctl -n hw.ncpu || echo 4)
             cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
-            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-            cp -vfr Debug/libGameMP.so ../../x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so                        
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libGame.so                        
             cd ${{github.workspace}}
             XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-bsd-amd64-bin.tar.xz x64
                       
@@ -366,7 +375,57 @@ jobs:
           name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-bsd-amd64-bin.tar.xz
           path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-bsd-amd64-bin.tar.xz      
   
-    
+  build-macos-x64:
+    name: macOS ${{ matrix.Configuration }} ${{ matrix.Platform }}
+    runs-on: macos-12
+    strategy:
+      fail-fast: false
+      matrix:
+        Configuration: [Release]
+        Platform: [x64]    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYYMMDD"
+
+      - name: Show current date
+        run: |
+          echo "${{ steps.date.outputs.time }}"
+          
+      - name: Build on macOS
+        run: |
+            uname -a
+            brew install bison flex sdl2 libogg libvorbis zlib-ng cmake vulkan-loader vulkan-headers
+            cd ${{github.workspace}}/Sources
+            awk '{sub("-march=native","-mtune=generic")}1' CMakeLists.txt > CmakeTemp.txt && mv CmakeTemp.txt CMakeLists.txt
+            cat CMakeLists.txt | grep mtune
+            cmake -B ${{github.workspace}}/Sources/build-x64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}
+            cd ${{github.workspace}}/Sources/build-x64
+            make -j$(sysctl -n hw.ncpu || echo 4)
+            cp -vfr Debug/*.dylib ../../x64/SamTSE/Mods/PESE2/Bin
+            cp -vfr Debug/libEntitiesMP.dylib ../../x64/SamTSE/Mods/PEFE2/Bin/libEntities.dylib
+            cp -vfr Debug/libGameMP.dylib ../../x64/SamTSE/Mods/PEFE2/Bin/libGame.dylib
+            cd ${{github.workspace}}/Sources
+            cat CMakeLists.txt | grep mtune
+            cmake -B ${{github.workspace}}/Sources/build-x64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }}  -DXPLUS=TRUE 
+            cd ${{github.workspace}}/Sources/build-x64-xplus
+            make -j$(sysctl -n hw.ncpu || echo 4)
+            cp -vfr Debug/*.dylib ../../x64/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr Debug/libEntitiesMP.dylib ../../x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.dylib
+            cp -vfr Debug/libGameMP.dylib ../../x64/SamTSE/Mods/PEFE2HD/Bin/libGame.dylib                        
+            cd ${{github.workspace}}
+            XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-macos-amd64-bin.tar.xz x64
+                      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-macos-amd64-bin.tar.xz
+          path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-macos-amd64-bin.tar.xz 
+   
   build-raspios-armv7l:
     name: RPi OS Lite ${{ matrix.Configuration }} ${{ matrix.arch }}
     runs-on: ubuntu-latest
@@ -411,21 +470,19 @@ jobs:
             gcc -c -Q -mcpu=native --help=target
             git clone https://github.com/tx00100xt/SE1-ParseError.git
             cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-armv7l -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DUSE_I386_NASM_ASM=FALSE -DRPI4=TRIE
-            cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-armv7l-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DUSE_I386_NASM_ASM=FALSE -DRPI4=TRIE
-            make -C SE1-ParseError/Sources/build-armv7l ecc
             make -j4 -C SE1-ParseError/Sources/build-armv7l
             cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/*.so SE1-ParseError/x32/SamTSE/Mods/PESE2/Bin
-            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libGameMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2/Bin/libGame.so
-            cp -vfr SE1-ParseError/Sources/EntitiesMP/PlayerWeaponsHD.es SE1-ParseError/Sources/EntitiesMP/PlayerWeapons.es
-            make -C SE1-ParseError/Sources/build-armv7l-xplus ecc
+            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-armv7l/Debug/libGameMP.so SE1-ParseError/x32/SamTSE/Mods/PEFE2/Bin/libGame.so
+            cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-armv7l-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DUSE_I386_NASM_ASM=FALSE -DRPI4=TRIE -DXPLUS=TRUE 
             make -j4 -C SE1-ParseError/Sources/build-armv7l-xplus
             cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/*.so SE1-ParseError/x32/SamTSE/Mods/PESE2HD/Bin
-            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libGameMP.so SE1-ParseError/x32/SamTFE/Mods/PEFE2HD/Bin/libGame.so             
+            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libEntitiesMP.so SE1-ParseError/x32/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-armv7l-xplus/Debug/libGameMP.so SE1-ParseError/x32/SamTSE/Mods/PEFE2HD/Bin/libGame.so             
             mv SE1-ParseError/x32 armv7l
             XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz armv7l
-            cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz Release/
+            cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz Release
+
     - name: Prepare Release
       run: |           
          sudo mv ${{github.workspace}}/Release/SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-armv7l-bin.tar.xz ${{github.workspace}}/
@@ -480,21 +537,18 @@ jobs:
             gcc -c -Q -mcpu=native --help=target
             git clone https://github.com/tx00100xt/SE1-ParseError.git
             cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-aarch64 -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DRPI4=TRIE
-            cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-aarch64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DRPI4=TRIE
-            make -C SE1-ParseError/Sources/build-aarch64 ecc
             make -j4 -C SE1-ParseError/Sources/build-aarch64
             cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/*.so SE1-ParseError/x64/SamTSE/Mods/PESE2/Bin
-            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libGameMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2/Bin/libGame.so
-            cp -vfr SE1-ParseError/Sources/EntitiesMP/PlayerWeaponsHD.es SE1-ParseError/Sources/EntitiesMP/PlayerWeapons.es
-            make -C SE1-ParseError/Sources/build-aarch64-xplus ecc
+            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-aarch64/Debug/libGameMP.so SE1-ParseError/x64/SamTSE/Mods/PEFE2/Bin/libGame.so
+            cmake SE1-ParseError/Sources -B SE1-ParseError/Sources/build-aarch64-xplus -DCMAKE_BUILD_TYPE=${{ matrix.Configuration }} -DRPI4=TRIE -DXPLUS=TRUE 
             make -j4 -C SE1-ParseError/Sources/build-aarch64-xplus
             cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/*.so SE1-ParseError/x64/SamTSE/Mods/PESE2HD/Bin
-            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2HD/Bin/libEntities.so
-            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libGameMP.so SE1-ParseError/x64/SamTFE/Mods/PEFE2HD/Bin/libGame.so           
+            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libEntitiesMP.so SE1-ParseError/x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr SE1-ParseError/Sources/build-aarch64-xplus/Debug/libGameMP.so SE1-ParseError/x64/SamTSE/Mods/PEFE2HD/Bin/libGame.so           
             mv SE1-ParseError/x64 aarch64
             XZ_DEFAULTS="-T 10" tar --use-compress-program=xz -cpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz aarch64
-            cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz Release/
+            cp SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz Release
     - name: Prepare Release
       run: |           
          sudo mv ${{github.workspace}}/Release/SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz ${{github.workspace}}/
@@ -504,3 +558,324 @@ jobs:
       with:
         name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz
         path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-rpios-aarch64-bin.tar.xz
+
+  build-ubuntu-riscv64:
+    # The host should always be linux
+    runs-on: ubuntu-22.04
+    name: Ubuntu Release ${{ matrix.arch }}
+
+    # Run steps on a matrix of 4 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: riscv64
+            distro: ubuntu22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build artifact
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{ github.token }}
+
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            case "${{ matrix.distro }}" in
+              ubuntu*|jessie|stretch|buster|bullseye)
+                apt-get update -qq -y
+                apt-get install -qq -y git cmake build-essential xz-utils &&
+                apt-get install -qq -y libsdl2-dev libogg-dev libvorbis-dev &&
+                apt-get install -qq -y bison flex zlib1g-dev libxxhash-dev &&
+                apt-get install -qq -y libvulkan1 libvulkan-dev vulkan-validationlayers vulkan-validationlayers-dev    
+                ;;
+              fedora*)
+                dnf -y update
+                dnf -y install git which
+                ;;
+              alpine*)
+                apk update
+                apk add git
+                ;;
+            esac
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            cd ${{github.workspace}}/Sources            
+            cmake -B ${{github.workspace}}/Sources/build -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build
+            make -j$(nproc || echo 4)
+            cd ${{github.workspace}}/Sources 
+            cmake -B ${{github.workspace}}/Sources/build-xplus -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build-xplus
+            make -j$(nproc || echo 4)      
+
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+           format: "YYYYMMDD"
+
+      - name: Show current date
+        run: |
+          echo "${{ steps.date.outputs.time }}"   
+
+      - name: Make artifact
+        # Items placed in /artifacts in the container will be in
+        # ${PWD}/artifacts on the host.
+        run: |
+            echo "*** Copy Libraries ***"
+            cd ${{github.workspace}}/build
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libGame.so
+            cd ${{github.workspace}}/build-xplus
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libGame.so
+            mv -f ${{github.workspace}}/x64 ${{github.workspace}}/riscv64 
+            echo "*** Create archive ***"
+            tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-riscv64-bin.tar.xz riscv64          
+            
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-riscv64-bin.tar.xz
+          path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-riscv64-bin.tar.xz         
+
+  build-ubuntu-ppc64le:
+    # The host should always be linux
+    runs-on: ubuntu-22.04
+    name: Ubuntu Release ${{ matrix.arch }}
+
+    # Run steps on a matrix of 4 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: ppc64le
+            distro: ubuntu22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build artifact
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{ github.token }}
+
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            case "${{ matrix.distro }}" in
+              ubuntu*|jessie|stretch|buster|bullseye)
+                apt-get update -qq -y
+                apt-get install -qq -y git cmake build-essential xz-utils &&
+                apt-get install -qq -y libsdl2-dev libogg-dev libvorbis-dev &&
+                apt-get install -qq -y bison flex zlib1g-dev libxxhash-dev &&
+                apt-get install -qq -y libvulkan1 libvulkan-dev vulkan-validationlayers vulkan-validationlayers-dev    
+                ;;
+              fedora*)
+                dnf -y update
+                dnf -y install git which
+                ;;
+              alpine*)
+                apk update
+                apk add git
+                ;;
+            esac
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            cd ${{github.workspace}}/Sources            
+            cmake -B ${{github.workspace}}/Sources/build -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build
+            make -j$(nproc || echo 4)
+            cd ${{github.workspace}}/Sources 
+            cmake -B ${{github.workspace}}/Sources/build-xplus -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build-xplus
+            make -j$(nproc || echo 4)      
+
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+           format: "YYYYMMDD"
+
+      - name: Show current date
+        run: |
+          echo "${{ steps.date.outputs.time }}"   
+
+      - name: Make artifact
+        # Items placed in /artifacts in the container will be in
+        # ${PWD}/artifacts on the host.
+        run: |
+            echo "*** Copy Libraries ***"
+            cd ${{github.workspace}}/build
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libGame.so
+            cd ${{github.workspace}}/build-xplus
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libGame.so
+            mv -f ${{github.workspace}}/x64 ${{github.workspace}}/ppc64le
+            echo "*** Create archive ***"
+            tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-ppc64le-bin.tar.xz ppc64le         
+            
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-ppc64le-bin.tar.xz
+          path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-ppc64le-bin.tar.xz         
+
+  build-ubuntu-s390x:
+    # The host should always be linux
+    runs-on: ubuntu-22.04
+    name: Ubuntu Release ${{ matrix.arch }}
+
+    # Run steps on a matrix of 4 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: s390x
+            distro: ubuntu22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build artifact
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{ github.token }}
+
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            case "${{ matrix.distro }}" in
+              ubuntu*|jessie|stretch|buster|bullseye)
+                apt-get update -qq -y
+                apt-get install -qq -y git cmake build-essential xz-utils &&
+                apt-get install -qq -y libsdl2-dev libogg-dev libvorbis-dev &&
+                apt-get install -qq -y bison flex zlib1g-dev libxxhash-dev &&
+                apt-get install -qq -y libvulkan1 libvulkan-dev vulkan-validationlayers vulkan-validationlayers-dev    
+                ;;
+              fedora*)
+                dnf -y update
+                dnf -y install git which
+                ;;
+              alpine*)
+                apk update
+                apk add git
+                ;;
+            esac
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            cd ${{github.workspace}}/Sources            
+            cmake -B ${{github.workspace}}/Sources/build -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build
+            make -j$(nproc || echo 4)
+            cd ${{github.workspace}}/Sources 
+            cmake -B ${{github.workspace}}/Sources/build-xplus -DCMAKE_BUILD_TYPE=Release -DTFE=TRUE -DUSE_I386_NASM_ASM=FALSE
+            cd ${{github.workspace}}/Sources/build-xplus
+            make -j$(nproc || echo 4)       
+
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+           format: "YYYYMMDD"
+
+      - name: Show current date
+        run: |
+          echo "${{ steps.date.outputs.time }}"   
+
+      - name: Make artifact
+        # Items placed in /artifacts in the container will be in
+        # ${PWD}/artifacts on the host.
+        run: |
+            echo "*** Copy Libraries ***"
+            cd ${{github.workspace}}/build
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2/Bin/libGame.so
+            cd ${{github.workspace}}/build-xplus
+            cp -vfr Debug/*.so ../../x64/SamTSE/Mods/PESE2HD/Bin
+            cp -vfr Debug/libEntitiesMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libEntities.so
+            cp -vfr Debug/libGameMP.so ../../x64/SamTSE/Mods/PEFE2HD/Bin/libGame.so
+            mv -f ${{github.workspace}}/x64 ${{github.workspace}}/s390x
+            echo "*** Create archive ***"
+            tar -cJpvf SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-s390x-bin.tar.xz s390x          
+            
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-s390x-bin.tar.xz
+          path: SeriousSam-ParseError-${{ steps.date.outputs.time }}-lnx-s390x-bin.tar.xz         

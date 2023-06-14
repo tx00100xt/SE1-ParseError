@@ -41,11 +41,32 @@ Type this in your terminal:
 git clone https://github.com/tx00100xt/SE1-ParseError.git
 cd SE1-ParseError/Sources
 ./build-linux64.sh              # use build-linux32.sh for 32-bits
-./build-linux64xplus.sh         # use build-linux32xplus.sh for 32-bits
 ```
-After that , libraries will be collected in the x32 or x64 directory . 
+After that , libraries will be collected in the Mods directory.   
 Copy them to SeriousSamClassic/SamTFE/Mods/PEFE2/Bin, SeriousSamClassic/SamTFE/Mods/PEFE2HD/Bin,
 SeriousSamClassic/SamTSE/Mods/PESE2/Bin, SeriousSamClassic/SamTSE/Mods/PESE2HD/Bin folder.
+
+### Ubuntu
+
+Instead of building you can install packages from ppa by adding ppa:tx00100xt/serioussam to your system's Software Sources.
+```bash
+sudo add-apt-repository ppa:tx00100xt/serioussam
+sudo add-apt-repository ppa:tx00100xt/serioussam-mods
+sudo apt update
+```
+This PPA can be added to your system manually by copying the lines below and adding them to your system's software sources.
+```
+deb https://ppa.launchpadcontent.net/tx00100xt/serioussam/ubuntu YOUR_UBUNTU_VERSION_HERE main 
+deb-src https://ppa.launchpadcontent.net/tx00100xt/serioussam/ubuntu YOUR_UBUNTU_VERSION_HERE main 
+```
+After adding ppa, run the commands:
+```bash
+sudo apt install serioussamclassic serioussamse-parseerror
+```
+or
+```bash
+sudo apt install serioussamclassic-vk serioussamse-parseerror
+```
 
 ### Gentoo
 
@@ -60,9 +81,9 @@ To build a game under Arch Linux you can use the package from AUR: https://aur.a
 The build for raspberry pi is similar to the build for Linux, you just need to add an additional build key.
 
 ```
+git clone https://github.com/tx00100xt/SE1-ParseError.git
 cd SE1-ParseError/Sources
 ./build-linux64.sh -DRPI4=TRUE             # use build-linux32.sh for 32-bits
-./build-linux64xplus.sh -DRPI4=TRUE        # use build-linux32xplus.sh for 32-bits
 ```
 ### FreeBSD
 
@@ -73,13 +94,34 @@ Type this in your terminal:
 git clone https://github.com/tx00100xt/SE1-ParseError.git
 cd SE1-ParseError/Sources
 bash build-linux64.sh                     # use build-linux32.sh for 32-bits
-bash build-linux64xplus.sh                # use build-linux32xplus.sh for 32-bits
 ```
-After that , libraries will be collected in the x32 or x64 directory . 
+After that , libraries will be collected in the Mods directory.   
 Copy them to SeriousSamClassic/SamTFE/Mods/PEFE2/Bin, SeriousSamClassic/SamTFE/Mods/PEFE2HD/Bin,
 SeriousSamClassic/SamTSE/Mods/PESE2/Bin, SeriousSamClassic/SamTSE/Mods/PESE2HD/Bin folder.
 
-Windows
+### macOS
+
+Install dependes
+```
+brew install bison flex sdl2 libogg libvorbis zlib-ng cmake git
+```
+Type this in your terminal:
+```
+git clone https://github.com/tx00100xt/SE1-ParseError.git
+cd SE1-ParseError/Sources
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j8 && make install
+mkdir build-xplus
+cd build-xplus 
+cmake -DCMAKE_BUILD_TYPE=Release -DXPLUS=TRUE ..
+make -j8 && make install
+```
+After that , libraries will be collected in the Mods directory.   
+Copy them to SeriousSamClassic/SamTFE/Mods/PEFE2/Bin, SeriousSamClassic/SamTFE/Mods/PEFE2HD/Bin,
+SeriousSamClassic/SamTSE/Mods/PESE2/Bin, SeriousSamClassic/SamTSE/Mods/PESE2HD/Bin folder.
+
 -------
 * This project can be compiled starting from Windows 7 and higher.
 
@@ -99,11 +141,12 @@ Supported OS
 * `FreeBSD`
 * `Windows`
 * `Raspberry PI OS`
+* `macOS`
 
 ### Build status
 |CI|Platform|Compiler|Configurations|Platforms|Status|
 |---|---|---|---|---|---|
-|GitHub Actions|Windows, Ubuntu, FreeBSD, Alpine, Raspberry PI OS Lite|MSVC, GCC, Clang|Release|x86, x64, armv7l, aarch64|![GitHub Actions Build Status](https://github.com/tx00100xt/SE1-ParseError/actions/workflows/cibuild.yml/badge.svg)
+|GitHub Actions|Windows, Ubuntu, FreeBSD, Alpine, Raspberry PI OS Lite, macOS|MSVC, GCC, Clang|Release|x86, x64, armv7l, aarch64, riscv64, ppc64le, s390x|![GitHub Actions Build Status](https://github.com/tx00100xt/SE1-ParseError/actions/workflows/cibuild.yml/badge.svg)
 
 You can download a the automatically build based on the latest commit.  
 To do this, go to the [Actions tab], select the top workflows, and then Artifacts.
