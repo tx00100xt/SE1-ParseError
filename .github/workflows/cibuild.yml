@@ -44,8 +44,8 @@ jobs:
         find . -name "CMakeLists.txt" -exec sed -i 's/-march=native/-mtune=generic/g' {} +
         cat CMakeLists.txt | grep mtune
         rm -rf ${{github.workspace}}/x32/SamTFE/Mods/PEFE2/Bin
-        rm -rf ${{github.workspace}}/x32/SamTFE/Mods/PESE2/Bin
-        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x32/SamTFE/Mods/PEFE2HD/Bin
         rm -rf ${{github.workspace}}/x32/SamTSE/Mods/PESE2HD/Bin
 
     - name: Run CMake and Build
@@ -110,8 +110,8 @@ jobs:
         find . -name "CMakeLists.txt" -exec sed -i 's/-march=native/-mtune=generic/g' {} +
         cat CMakeLists.txt | grep mtune
         rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PEFE2/Bin
-        rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PESE2/Bin
-        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PEFE2HD/Bin
         rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD/Bin
 
     - name: Run CMake and Build
@@ -171,8 +171,8 @@ jobs:
     - name: Prepare
       run: |
         rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PEFE2/Bin
-        rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PESE2/Bin
-        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PEFE2HD/Bin
+        rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2/Bin
+        rm -rf ${{github.workspace}}/x64/SamTFE/Mods/PEFE2HD/Bin
         rm -rf ${{github.workspace}}/x64/SamTSE/Mods/PESE2HD/Bin 
        
     - name: Run CMake
