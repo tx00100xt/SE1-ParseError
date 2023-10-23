@@ -60,8 +60,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "EntitiesMP/Display.h"
 
 #ifdef PLATFORM_UNIX
-extern "C" __attribute__ ((visibility("default"))) FLOAT _fWeaponFOVAdjuster = 1.0f;
-extern "C" __attribute__ ((visibility("default"))) FLOAT _fPlayerFOVAdjuster = 1.0f;
+extern "C" __attribute__ ((visibility("default"))) FLOAT _fWeaponFOVAdjuster;
+extern "C" __attribute__ ((visibility("default"))) FLOAT _fPlayerFOVAdjuster;
 #else
 extern __declspec(dllimport) FLOAT _fWeaponFOVAdjuster;
 extern __declspec(dllimport) FLOAT _fPlayerFOVAdjuster;
@@ -384,6 +384,7 @@ FLOAT hud_fScaling     = 0.5f;
 FLOAT hud_tmWeaponsOnScreen = 3.0f;
 FLOAT hud_tmLatencySnapshot = 1.0f;
 INDEX hud_bShowMatchInfo = TRUE;
+INDEX hud_bWeaponsIconScale = 0; // HUD weapons icons scale: 0 - small, 1 - big
 
 FLOAT plr_fBreathingStrength = 0.0f;
 extern FLOAT plr_tmSnoopingTime;
@@ -838,6 +839,7 @@ void CPlayer_OnInitClass(void)
   _pShell->DeclareSymbol("INDEX cht_bDFBA;", (void *) &cht_bDFBA);
   _pShell->DeclareSymbol("INDEX cht_bDumpPlayerShading;", (void *) &cht_bDumpPlayerShading);
   _pShell->DeclareSymbol("persistent user INDEX hud_bShowMatchInfo;", (void *) &hud_bShowMatchInfo);
+  _pShell->DeclareSymbol("persistent user INDEX hud_bWeaponsIconScale;", (void *) &hud_bWeaponsIconScale);
 
   _pShell->DeclareSymbol("persistent user FLOAT wpn_fRecoilSpeed[17];",   (void *) &wpn_fRecoilSpeed);
   _pShell->DeclareSymbol("persistent user FLOAT wpn_fRecoilLimit[17];",   (void *) &wpn_fRecoilLimit);

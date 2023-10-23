@@ -38,8 +38,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define TOP_HEALTH 100
 
 #ifdef PLATFORM_UNIX
-extern "C" __attribute__ ((visibility("default"))) FLOAT _fArmorHeightAdjuster = 1.0f;
-extern "C" __attribute__ ((visibility("default"))) FLOAT _fFragScorerHeightAdjuster = 1.0f;
+extern "C" __attribute__ ((visibility("default"))) FLOAT _fArmorHeightAdjuster;
+extern "C" __attribute__ ((visibility("default"))) FLOAT _fFragScorerHeightAdjuster;
 #else
 extern __declspec(dllimport) FLOAT _fArmorHeightAdjuster;
 extern __declspec(dllimport) FLOAT _fFragScorerHeightAdjuster;
@@ -70,6 +70,7 @@ extern FLOAT hud_fOpacity;
 extern FLOAT hud_fScaling;
 extern FLOAT hud_tmWeaponsOnScreen;
 extern INDEX hud_bShowMatchInfo;
+extern INDEX hud_bWeaponsIconScale; // HUD weapons icons scale: 0 - small, 1 - big
 
 // mod chit
 extern INDEX hud_bShowEnemyRadar;
@@ -1371,13 +1372,21 @@ extern void DrawHUD( const CPlayer *penPlayerCurrent, CDrawPort *pdpCurrent, BOO
       if( _awiWeapons[i].wi_paiAmmo!=NULL && _awiWeapons[i].wi_paiAmmo->ai_iAmmoAmmount==0) {
         _fCustomScalingAdjustment = 0.9f; //#### 0.7f - 1.0f
         HUD_DrawBorder( fCol, fRow, fOneUnit, fOneUnit, 0x22334400);
-        _fCustomScalingAdjustment = 0.5f;
+        if (hud_bWeaponsIconScale) {
+          _fCustomScalingAdjustment = 0.75f;
+        } else {
+          _fCustomScalingAdjustment = 0.5f;
+        }
         HUD_DrawIcon(   fCol, fRow, *_awiWeapons[i].wi_ptoWeapon, 0x22334400, 1.0f, FALSE);
       // yes ammo
       } else {
         _fCustomScalingAdjustment = 1.0f; //#### 0.7f - 1.0f
         HUD_DrawBorder( fCol, fRow, fOneUnit, fOneUnit, colBorder);
-        _fCustomScalingAdjustment = 0.5f;
+        if (hud_bWeaponsIconScale) {
+          _fCustomScalingAdjustment = 0.75f;
+        } else {
+          _fCustomScalingAdjustment = 0.5f;
+        }
         HUD_DrawIcon(   fCol, fRow, *_awiWeapons[i].wi_ptoWeapon, colIcon, 1.0f, FALSE);
       }
       // advance to next position

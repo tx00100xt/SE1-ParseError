@@ -37,6 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "EntitiesMP/BackgroundViewer.h"
 #include "EntitiesMP/TemplateCreatorEG.h"
 #include "EntitiesMP/Light.h"
+#include "EntitiesMP/Common/LightFixes.h"
 #include "EntitiesMP/WeaponItem.h"
 extern CTString gam_strGameSpyExtras;
 %}
@@ -169,6 +170,7 @@ components:
   20 model   MODEL_PLAYER          "Models\\Player\\Sammy\\Player.mdl",
   21 model   MODEL_BODY            "Models\\Player\\Sammy\\Body.mdl",
   22 model   MODEL_HEAD            "Models\\Player\\Sammy\\Head.mdl",
+  23 class CLASS_LIGHT             "Classes\\Light.ecl",
 
   31 texture TEXTURE_PLAYER        "Models\\Player\\Sammy\\Player.tex",
   32 texture TEXTURE_PLAYER_BLACK  "Models\\Player\\Sammy\\Player_blue.tex",
@@ -573,6 +575,373 @@ functions:
     }}
   }
 
+  //***************************************************************
+  //****************  Fix Textures on some levels  ****************
+  //***************************************************************
+
+  // Clear Lights
+  void ClearLights(void)
+  {
+    {FOREACHINDYNAMICCONTAINER(_pNetwork->ga_World.wo_cenEntities, CEntity, pen) {
+      if(IsDerivedFromClass(pen, "Light")) {
+        if(((CLight&)*pen).m_strName == "fix_texture"){
+          pen->Destroy();
+        }
+      }
+    }}
+  }
+
+  // Fix textures
+  void FixTexturesLandOfDamned(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 4; i++) {
+      pl = CPlacement3D(FLOAT3D(7.0f, 63.0f, -268.0f), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }    
+  }
+
+  void FixTexturesValleyOfTheKings(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 4; i++) {
+      FLOAT m_fCoord1 = _fValleyOfTheKingsCoordinates[i][0];
+      FLOAT m_fCoord2 = _fValleyOfTheKingsCoordinates[i][1];
+      FLOAT m_fCoord3 = _fValleyOfTheKingsCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }    
+  }
+
+  void FixTexturesDunes(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 8; i++) {
+      FLOAT m_fCoord1 = _fDunesCoordinates[i][0];
+      FLOAT m_fCoord2 = _fDunesCoordinates[i][1];
+      FLOAT m_fCoord3 = _fDunesCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+  }
+
+  void FixTexturesSuburbs(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 21; i++) {
+      FLOAT m_fCoord1 = _fSuburbsCoordinates[i][0];
+      FLOAT m_fCoord2 = _fSuburbsCoordinates[i][1];
+      FLOAT m_fCoord3 = _fSuburbsCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+  }
+
+  void FixTexturesMetropolis(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    FLOAT m_fCoord1 = _fMetropolisCoordinates[0][0];
+    FLOAT m_fCoord2 = _fMetropolisCoordinates[0][1];
+    FLOAT m_fCoord3 = _fMetropolisCoordinates[0][2];
+    pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+  }
+
+  void FixTexturesAlleyOfSphinxes(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 37; i++) {
+      FLOAT m_fCoord1 = _fAlleyOfSphinxesCoordinates[i][0];
+      FLOAT m_fCoord2 = _fAlleyOfSphinxesCoordinates[i][1];
+      FLOAT m_fCoord3 = _fAlleyOfSphinxesCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    } 
+  }
+
+  void FixTexturesKarnak(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 41; i++) {
+      FLOAT m_fCoord1 = _fKarnakCoordinates[i][0];
+      FLOAT m_fCoord2 = _fKarnakCoordinates[i][1];
+      FLOAT m_fCoord3 = _fKarnakCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+    FLOAT m_fCoord1 = _fKarnakCoordinates[41][0];
+    FLOAT m_fCoord2 = _fKarnakCoordinates[41][1];
+    FLOAT m_fCoord3 = _fKarnakCoordinates[41][2];
+    pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+    pen = CreateEntity(pl, CLASS_LIGHT);
+    pen->Initialize();
+    ((CLight&)*pen).m_colColor = C_GRAY;
+    ((CLight&)*pen).m_ltType = LT_POINT;
+    ((CLight&)*pen).m_bDarkLight = TRUE;
+    ((CLight&)*pen).m_rFallOffRange = 4.0f;
+    ((CLight&)*pen).m_strName = "fix_texture";
+    pen->en_ulSpawnFlags =0xFFFFFFFF;
+    pen->Reinitialize();
+  }
+
+  void FixTexturesLuxor(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 51; i++) {
+      FLOAT m_fCoord1 = _fLuxorCoordinates[i][0];
+      FLOAT m_fCoord2 = _fLuxorCoordinates[i][1];
+      FLOAT m_fCoord3 = _fLuxorCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+    FLOAT m_fCoord1 = _fLuxorCoordinates[51][0];
+    FLOAT m_fCoord2 = _fLuxorCoordinates[51][1];
+    FLOAT m_fCoord3 = _fLuxorCoordinates[51][2];
+    pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+    pen = CreateEntity(pl, CLASS_LIGHT);
+    pen->Initialize();
+    ((CLight&)*pen).m_colColor = C_GRAY;
+    ((CLight&)*pen).m_ltType = LT_POINT;
+    ((CLight&)*pen).m_bDarkLight = TRUE;
+    ((CLight&)*pen).m_rFallOffRange = 1.0f;
+    ((CLight&)*pen).m_strName = "fix_texture";
+    pen->en_ulSpawnFlags =0xFFFFFFFF;
+    pen->Reinitialize();
+  }
+
+  void FixTexturesSacredYards(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 27; i++) {
+      FLOAT m_fCoord1 = _fSacredYardsCoordinates[i][0];
+      FLOAT m_fCoord2 = _fSacredYardsCoordinates[i][1];
+      FLOAT m_fCoord3 = _fSacredYardsCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+  }
+
+  void FixTexturesKarnakDemo(void) 
+  {
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 49; i++) {
+      FLOAT m_fCoord1 = _fKarnakDemoCoordinates[i][0];
+      FLOAT m_fCoord2 = _fKarnakDemoCoordinates[i][1];
+      FLOAT m_fCoord3 = _fKarnakDemoCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    }
+    FLOAT m_fCoord1 = _fKarnakDemoCoordinates[49][0];
+    FLOAT m_fCoord2 = _fKarnakDemoCoordinates[49][1];
+    FLOAT m_fCoord3 = _fKarnakDemoCoordinates[49][2];
+    pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+    pen = CreateEntity(pl, CLASS_LIGHT);
+    pen->Initialize();
+    ((CLight&)*pen).m_colColor = C_GRAY;
+    ((CLight&)*pen).m_ltType = LT_POINT;
+    ((CLight&)*pen).m_bDarkLight = TRUE;
+    ((CLight&)*pen).m_rFallOffRange = 4.0f;
+    ((CLight&)*pen).m_strName = "fix_texture";
+    pen->en_ulSpawnFlags =0xFFFFFFFF;
+    pen->Reinitialize();
+  }
+
+  void FixTexturesIntro(void) 
+  { 
+    ClearLights();
+    CEntity *pen = NULL;
+    CPlacement3D pl;
+    for(int i = 0; i < 8; i++) {
+      FLOAT m_fCoord1 = _fIntroCoordinates[i][0];
+      FLOAT m_fCoord2 = _fIntroCoordinates[i][1];
+      FLOAT m_fCoord3 = _fIntroCoordinates[i][2];
+      pl = CPlacement3D(FLOAT3D(m_fCoord1, m_fCoord2, m_fCoord3), ANGLE3D(0, 0, 0));
+      pen = CreateEntity(pl, CLASS_LIGHT);
+      pen->Initialize();
+      ((CLight&)*pen).m_colColor = C_GRAY;
+      ((CLight&)*pen).m_ltType = LT_POINT;
+      ((CLight&)*pen).m_bDarkLight = TRUE;
+      ((CLight&)*pen).m_rFallOffRange = 8.0f;
+      ((CLight&)*pen).m_strName = "fix_texture";
+      pen->en_ulSpawnFlags =0xFFFFFFFF;
+      pen->Reinitialize();
+    } 
+  }
+
+  //***************************************************************
+  //*********************** Old metods: ***************************
+  //****************  Fix Textures on Obelisk  ********************
+  //***************************************************************
+  void FixTexturesOnObelisk(CTFileName strLevelName)
+  {
+    // for each entity in the world
+    {FOREACHINDYNAMICCONTAINER(GetWorld()->wo_cenEntities, CEntity, iten) {
+      // if it is brush entity
+      if (iten->en_RenderType == CEntity::RT_BRUSH) {
+        // for each mip in its brush
+        FOREACHINLIST(CBrushMip, bm_lnInBrush, iten->en_pbrBrush->br_lhBrushMips, itbm) {
+          // for all sectors in this mip
+          FOREACHINDYNAMICARRAY(itbm->bm_abscSectors, CBrushSector, itbsc) {
+            // for all polygons in sector
+            FOREACHINSTATICARRAY(itbsc->bsc_abpoPolygons, CBrushPolygon, itbpo)
+            {
+              CTFileName strTextureName = itbpo->bpo_abptTextures[1].bpt_toTexture.GetName().FileName();
+              int _Obelisk02Light_found   = strncmp((const char *)strTextureName, (const char *) "Obelisk02Light", (size_t) 14 );
+              if (_Obelisk02Light_found == 0 ){
+                  // Settings:
+                  // itbpo->bpo_abptTextures[1].bpt_toTexture.GetName().FileName()
+                  // itbpo->bpo_abptTextures[1].s.bpt_ubBlend
+                  // itbpo->bpo_abptTextures[1].s.bpt_ubFlags 
+                  // itbpo->bpo_abptTextures[1].s.bpt_colColor
+                if ( strLevelName=="KarnakDemo" || strLevelName=="Intro" || strLevelName=="08_Suburbs"
+                  || strLevelName=="13_Luxor" || strLevelName=="14_SacredYards") {
+                  itbpo->bpo_abptTextures[1].s.bpt_colColor = (C_WHITE| 0x5F);
+                } else if ( strLevelName=="04_ValleyOfTheKings" || strLevelName=="11_AlleyOfSphinxes" || strLevelName=="12_Karnak"){
+                  itbpo->bpo_abptTextures[1].s.bpt_colColor = (C_GRAY| 0x2F);
+                }
+              }
+            }
+          }
+        }
+      } /// END if()
+    }}
+  }
+
+  //***************************************************************
+  //**********^**  Fix Textures on Alley Of Sphinxes  *************
+  //***************************************************************
+  void FixTexturesOnAlleyOfSphinxes(void)
+  {
+    // for each entity in the world
+    {FOREACHINDYNAMICCONTAINER(GetWorld()->wo_cenEntities, CEntity, iten) {
+      // if it is brush entity
+      if (iten->en_RenderType == CEntity::RT_BRUSH) {
+        // for each mip in its brush
+        FOREACHINLIST(CBrushMip, bm_lnInBrush, iten->en_pbrBrush->br_lhBrushMips, itbm) {
+          // for all sectors in this mip
+          FOREACHINDYNAMICARRAY(itbm->bm_abscSectors, CBrushSector, itbsc) {
+            // for all polygons in sector
+            FOREACHINSTATICARRAY(itbsc->bsc_abpoPolygons, CBrushPolygon, itbpo)
+            {
+              CTFileName strTextureName = itbpo->bpo_abptTextures[1].bpt_toTexture.GetName().FileName();
+              int _EyeOfRa_found = strncmp((const char *)strTextureName, (const char *) "EyeOfRa", (size_t) 7 );
+              int _Wall12_found  = strncmp((const char *)strTextureName, (const char *) "Wall12",  (size_t) 6 );
+              int _Wingy02_found = strncmp((const char *)strTextureName, (const char *) "Wingy02", (size_t) 7 );
+              if (_EyeOfRa_found == 0 || _Wall12_found == 0 || _Wingy02_found == 0){
+                itbpo->bpo_abptTextures[1].s.bpt_ubBlend  = BPT_BLEND_BLEND;
+                itbpo->bpo_abptTextures[1].s.bpt_colColor = C_GRAY|0x80;
+              }
+            }
+          }
+        }
+      } // END if()
+    }}
+  }
+
+  //***************************************************************
+  //***************************************************************
+  //***************************************************************
+
   // check for stale fuss-makers
   void CheckOldFussMakers(void)
   {
@@ -760,6 +1129,54 @@ procedures:
     } else {
       InitializeSEMaps();
 			//CreateTemplateCreator();
+    }
+
+
+    // Get Level Name and Mod Name
+    CTString strModName = _pShell->GetValue("sys_strModName");
+    INDEX iBugFixMetod = _pShell->GetINDEX("gam_bFixIlluminationsMetod");
+
+    // Fix textures
+    if ( /* strModName=="" && */ iBugFixMetod == 2 && strLevelName=="3_2_LandOfDamned") {
+      FixTexturesLandOfDamned();
+    }
+
+    if(iBugFixMetod == 1) {
+      // Fix Obelisk textures
+      if ( strModName=="" ) {
+        if ( strLevelName=="04_ValleyOfTheKings" || strLevelName=="11_AlleyOfSphinxes" || strLevelName=="12_Karnak" 
+          || strLevelName=="13_Luxor" || strLevelName=="KarnakDemo" || strLevelName=="Intro" 
+          || strLevelName=="08_Suburbs" || strLevelName=="14_SacredYards") {
+          FixTexturesOnObelisk(strLevelName);
+        }
+      }
+      // Fix Alley Of Sphinxes textures
+      if (/* strModName=="" && */ strLevelName=="11_AlleyOfSphinxes") {
+        FixTexturesOnAlleyOfSphinxes();
+      }
+    } else if(iBugFixMetod == 2) {
+      // Fix textures
+      if (/* strModName=="" && */ strLevelName=="04_ValleyOfTheKings") {
+        FixTexturesValleyOfTheKings();
+      } else if (/* strModName=="" && */ strLevelName=="07_Dunes") {
+        FixTexturesDunes();
+      } else if (/* strModName=="" && */ strLevelName=="08_Suburbs") {
+        FixTexturesSuburbs();
+      } else if (/* strModName=="" && */ strLevelName=="10_Metropolis") {
+        FixTexturesMetropolis();
+      } else if (/* strModName=="" && */ strLevelName=="11_AlleyOfSphinxes") {
+        FixTexturesAlleyOfSphinxes();
+      } else if (/* strModName=="" && */ strLevelName=="12_Karnak") {
+        FixTexturesKarnak();
+      } else if (/* strModName=="" && */ strLevelName=="13_Luxor") {
+        FixTexturesLuxor();
+      } else if (/* strModName=="" && */ strLevelName=="14_SacredYards") {
+        FixTexturesSacredYards();
+      } else if (/* strModName=="" && */ strLevelName=="KarnakDemo") {
+        FixTexturesKarnakDemo();
+      } else if (/* strModName=="" && */ strLevelName=="Intro") {
+        FixTexturesIntro();
+      }
     }
 
 		//CTString str = "15.567";
